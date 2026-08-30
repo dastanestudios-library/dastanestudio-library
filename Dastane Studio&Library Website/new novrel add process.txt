@@ -1,0 +1,11 @@
+{
+    id: 4,
+    title: "آپ کے نئے ناول کا نام",
+    tag: "Romantic Suspense",
+    description: "یہاں ناول کا مختصر خلاصہ لکھیں۔",
+    buttonText: "Read Online",
+    isAvailable: true,
+    link: "#",
+    alertMessage: "",
+    coverImage: "" // اگر تصویر لگانا چاہیں تو "assets/images/cover.jpg"
+}
