@@ -970,17 +970,24 @@ header {
     flex-direction: column;
     gap: 14px;
     max-width: 540px;
+    width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .newsletter-form .form-row {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .newsletter-form input {
     flex: 1 1 220px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     padding: 13px 16px;
     border: 1px solid rgba(255,255,255,0.4);
     border-radius: 8px;
@@ -997,6 +1004,9 @@ header {
 
 .plan-select {
     flex: 1 1 220px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     padding: 13px 16px;
     border: 1px solid rgba(255,255,255,0.4);
     border-radius: 8px;
@@ -1006,9 +1016,12 @@ header {
     background-color: #ffffff;
     cursor: pointer;
     font-weight: 500;
+    text-overflow: ellipsis;
 }
 
 .newsletter-form button {
+    width: 100%;
+    box-sizing: border-box;
     padding: 14px 28px;
     border: none;
     border-radius: 8px;
@@ -2188,16 +2201,139 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .pricing-wrap {
-        padding: 0 4% 50px;
+    /* Fixed Newsletter & Writers Card on Mobile */
+    .newsletter {
+        padding: 40px 4% 50px;
+        width: 100%;
+        overflow: hidden;
     }
 
-    .vip-plan-card {
-        padding: 24px 18px;
+    .newsletter-inner {
+        padding: 24px 14px;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 14px;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .newsletter-inner h2 {
+        font-size: 22px;
+    }
+
+    .newsletter-inner p.newsletter-desc {
+        font-size: 13.5px;
+        margin-bottom: 20px;
+    }
+
+    .writers-feature-card {
+        padding: 18px 12px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 20px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .writers-card-header {
+        gap: 12px;
+    }
+
+    .writers-icon-wrap {
+        font-size: 24px;
+        padding: 8px;
+    }
+
+    .writers-title {
+        font-size: 18px;
+    }
+
+    .writers-subtitle {
+        font-size: 13px;
+    }
+
+    .plan-features {
+        gap: 8px;
+        margin-top: 14px;
+    }
+
+    .plan-features li {
+        font-size: 13px;
+        gap: 8px;
+    }
+
+    .official-announcement-box {
+        margin-top: 16px;
+        padding: 12px 10px;
+        width: 100%;
+        border-radius: 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .announcement-text {
+        font-size: 12.5px;
+        line-height: 1.5;
+    }
+
+    .official-channels-grid {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .official-channel-pill {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 12px;
+        word-break: break-all;
+        box-sizing: border-box;
     }
 
     .newsletter-form {
-        padding: 24px 18px;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        gap: 10px;
+        box-sizing: border-box;
+    }
+
+    .newsletter-form .form-row {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .newsletter-form input {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        padding: 12px 14px !important;
+        font-size: 13.5px !important;
+        box-sizing: border-box !important;
+    }
+
+    .plan-select {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        padding: 12px 14px !important;
+        font-size: 12.5px !important;
+        box-sizing: border-box !important;
+        text-overflow: ellipsis;
+    }
+
+    .newsletter-form button {
+        width: 100% !important;
+        padding: 13px 14px !important;
+        font-size: 14px !important;
+        box-sizing: border-box !important;
     }
 
     .faq {
@@ -2224,15 +2360,6 @@ footer {
 
     .logo::after {
         display: none;
-    }
-
-    .newsletter-form .form-row {
-        flex-direction: column;
-    }
-
-    .plan-header {
-        flex-direction: column;
-        align-items: flex-start;
     }
 
     .auth-btn {
