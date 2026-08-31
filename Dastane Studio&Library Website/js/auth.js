@@ -535,7 +535,7 @@
         if (editModalClose) editModalClose.addEventListener('click', closeEditProfileModal);
         if (editModalBackdrop) editModalBackdrop.addEventListener('click', closeEditProfileModal);
 
-        // 2. SIGN UP FORM SUBMISSION (Fast Username & Password)
+        // 2. SIGN UP FORM SUBMISSION (Fast Username & Password with Unique Email & Username)
         const signupForm = document.getElementById('signupForm');
         if (signupForm) {
             signupForm.addEventListener('submit', (e) => {
@@ -546,13 +546,19 @@
                 const password = document.getElementById('signupPassword').value;
                 const confirmPassword = document.getElementById('signupConfirmPassword').value;
 
-                if (!name || !username || !password) {
-                    setAuthStatus('signupStatus', '⚠️ Please fill in all required fields.', false);
+                if (!name || !username || !email || !password) {
+                    setAuthStatus('signupStatus', '⚠️ Please fill in all required fields (Name, Username, Email, Password).', false);
                     return;
                 }
 
                 if (username.length < 3) {
                     setAuthStatus('signupStatus', '⚠️ Username must be at least 3 characters long.', false);
+                    return;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    setAuthStatus('signupStatus', '⚠️ Please enter a valid Email / Gmail address.', false);
                     return;
                 }
 
@@ -568,27 +574,25 @@
 
                 const users = getUsersDB();
                 
-                // Check if username already exists
+                // 1. Strict Username Duplication Check
                 const userExists = users.find(u => u.username && u.username.toLowerCase() === username);
                 if (userExists) {
-                    setAuthStatus('signupStatus', '⚠️ This username is already taken. Please choose another one.', false);
+                    setAuthStatus('signupStatus', '❌ This Username is already taken! Please choose another username.', false);
                     return;
                 }
 
-                // Check if email already exists (if provided)
-                if (email) {
-                    const emailExists = users.find(u => u.email && u.email.toLowerCase() === email);
-                    if (emailExists) {
-                        setAuthStatus('signupStatus', '⚠️ An account with this email already exists. Please Sign In.', false);
-                        return;
-                    }
+                // 2. Strict Email / Gmail Duplication Check
+                const emailExists = users.find(u => u.email && u.email.toLowerCase() === email);
+                if (emailExists) {
+                    setAuthStatus('signupStatus', '❌ An account with this Email / Gmail already exists! A Gmail cannot be used for multiple accounts. Please Sign In.', false);
+                    return;
                 }
 
                 const newUser = {
                     id: 'usr_' + Date.now(),
                     name: name,
                     username: username,
-                    email: email || `${username}@dastane.local`,
+                    email: email,
                     avatar: '', // Default Name Initials
                     favorites: [], // User-bound favorites list
                     password: password,
