@@ -1,11 +1,44 @@
+================================================================================
+📖 DASTANE STUDIO - NOVELS & SHORT STORIES ADDING GUIDE (ناول و افسانہ گائیڈ)
+================================================================================
+
+1️⃣ اگر نیا "ناول (Full Novel)" ایڈ کرنا ہو:
+فائل کھولیں: js/data/novels-list.js
+اور یہ بلاک کاپی کر کے آخر میں پیسٹ کریں:
+
 {
-    id: 4,
-    title: "آپ کے نئے ناول کا نام",
-    tag: "Romantic Suspense",
+    id: 6, // نیا نمبر
+    title: "ناول کا نام",
+    type: "novel",
+    tag: "Featured Novel",
+    categoryName: "Novel",
     description: "یہاں ناول کا مختصر خلاصہ لکھیں۔",
     buttonText: "Read Online",
     isAvailable: true,
-    link: "#",
-    alertMessage: "",
-    coverImage: "" // اگر تصویر لگانا چاہیں تو "assets/images/cover.jpg"
-}
+    link: "https://your-novel-link.blogspot.com/",
+    coverImage: "https://i.pinimg.com/...jpg"
+},
+
+--------------------------------------------------------------------------------
+
+2️⃣ اگر نیا "افسانہ یا مختصر کہانی (Short Story)" ایڈ کرنا ہو:
+فائل کھولیں: js/data/stories-list.js
+اور یہ بلاک کاپی کر کے آخر میں پیسٹ کریں:
+
+{
+    id: 7, // نیا نمبر
+    title: "کہانی کا نام",
+    type: "story",
+    tag: "Short Story",
+    categoryName: "Short Story",
+    description: "یہاں کہانی کا مختصر خلاصہ لکھیں۔",
+    buttonText: "Read Online",
+    isAvailable: true,
+    link: "https://your-story-link.blogspot.com/",
+    coverImage: "https://i.pinimg.com/...jpg"
+},
+
+--------------------------------------------------------------------------------
+✨ نوٹ: آپ ان دونوں میں سے جس فائل میں بھی نیا ناول یا کہانی ایڈ کریں گے، 
+وہ "All Publications"، "Search Engine"، اور "Category Tabs" میں خود بخود شامل ہو جائے گی!
+================================================================================

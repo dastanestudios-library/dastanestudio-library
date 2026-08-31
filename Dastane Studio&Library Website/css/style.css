@@ -59,7 +59,7 @@ body, header, .book-card, .theme-btn, .read-btn, .contact-form input,
 
 html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100vw;
     width: 100%;
 }
@@ -69,7 +69,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100vw;
     width: 100%;
     position: relative;
@@ -105,7 +105,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   4. Header & Navigation
+   4. Header & Navigation (Always Accessible Floating Sticky Header)
    -------------------------------------------------------------------------- */
 header {
     display: flex;
@@ -114,11 +114,20 @@ header {
     padding: 16px 8%;
     border-bottom: 1px solid var(--border-color);
     position: sticky;
+    position: -webkit-sticky;
     top: 0;
-    z-index: 100;
-    background-color: color-mix(in srgb, var(--bg-color) 85%, transparent);
-    backdrop-filter: blur(10px);
-    animation: fadeInDown 0.7s ease both;
+    z-index: 1000;
+    background-color: color-mix(in srgb, var(--bg-color) 92%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: padding 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+header.scrolled {
+    padding: 11px 8%;
+    background-color: color-mix(in srgb, var(--bg-color) 96%, transparent);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.09);
+    border-bottom-color: var(--border-color);
 }
 
 .logo {
@@ -448,6 +457,78 @@ header {
 /* --------------------------------------------------------------------------
    9. Books / Novels Grid & Cards
    -------------------------------------------------------------------------- */
+/* Library Search Bar */
+.library-search-wrap {
+    max-width: 580px;
+    width: 100%;
+    margin: 0 auto 24px;
+    padding: 0 4%;
+    box-sizing: border-box;
+}
+
+.library-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1.5px solid var(--border-color);
+    border-radius: 40px;
+    padding: 4px 18px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.library-search-box:focus-within {
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 20px rgba(107, 29, 47, 0.12);
+}
+
+.library-search-box .search-icon {
+    color: var(--accent-color);
+    flex-shrink: 0;
+    margin-right: 10px;
+    opacity: 0.8;
+}
+
+.library-search-box input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 10px 0;
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--text-color);
+    outline: none;
+}
+
+.library-search-box input::placeholder {
+    color: var(--text-color);
+    opacity: 0.55;
+}
+
+.clear-search-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--border-color);
+    color: var(--text-color);
+    border: none;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    margin-left: 8px;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+}
+
+.clear-search-btn:hover {
+    background: var(--accent-color);
+    color: #ffffff;
+}
+
 /* Library Filter Bar */
 .library-filter-bar {
     display: flex;
@@ -502,22 +583,30 @@ header {
 
 .books-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 340px));
+    justify-content: center;
     gap: 30px;
-    padding: 0 8% 70px 8%;
+    padding: 0 8% 50px 8%;
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .book-card {
     position: relative;
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 25px;
+    border-radius: 12px;
+    padding: 24px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+    max-width: 340px;
+    min-height: 480px;
+    box-sizing: border-box;
     transition: transform 0.35s ease, box-shadow 0.35s ease, background-color 0.4s ease, border-color 0.4s ease;
 }
 
@@ -575,6 +664,47 @@ header {
     margin: 10px auto 30px;
     max-width: 580px;
     width: 100%;
+}
+
+/* Library Pagination */
+.library-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 10px auto 60px;
+    padding: 0 4%;
+    flex-wrap: wrap;
+}
+
+.page-num-btn, .page-nav-btn {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-num-btn:hover, .page-nav-btn:hover:not(:disabled) {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.page-num-btn.active {
+    background: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(107, 29, 47, 0.25);
+}
+
+.page-nav-btn.disabled, .page-nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
 }
 
 /* Floating Dastane Micro Toast */
@@ -808,11 +938,12 @@ header {
 .newsletter-inner {
     max-width: 780px;
     margin: 0 auto;
-    background: linear-gradient(135deg, var(--accent-color), var(--accent-soft));
+    background: #6B1D2F;
     border-radius: 20px;
     padding: 46px 36px;
     color: #fff;
-    box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+    box-shadow: 0 16px 44px rgba(107, 29, 47, 0.32);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .vip-badge {
@@ -2489,4 +2620,30 @@ footer {
     background: #141418 !important;
     border-color: #2c1f24 !important;
     color: #f2ede4 !important;
+}
+
+[data-theme="dark"] .library-search-box {
+    background-color: #141418 !important;
+    background: #141418 !important;
+    border-color: #2c1f24 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme="dark"] .library-search-box input {
+    color: #f2ede4 !important;
+}
+
+[data-theme="dark"] .page-num-btn,
+[data-theme="dark"] .page-nav-btn {
+    background-color: #141418 !important;
+    background: #141418 !important;
+    border-color: #2c1f24 !important;
+    color: #f2ede4 !important;
+}
+
+[data-theme="dark"] .page-num-btn.active {
+    background-color: #8c243e !important;
+    background: #8c243e !important;
+    border-color: #8c243e !important;
+    color: #ffffff !important;
 }

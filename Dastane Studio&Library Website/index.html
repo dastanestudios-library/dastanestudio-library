@@ -109,9 +109,20 @@
     <h2 class="section-title reveal" id="library">Our Publications &amp; Library</h2>
     <p class="section-sub reveal">A curated collection of stories crafted with heart — from timeless romance to spine-tingling suspense.</p>
     
-    <!-- Library Filter Tabs (All Books vs My Favorites) -->
+    <!-- Library Search Bar -->
+    <div class="library-search-wrap reveal">
+        <div class="library-search-box">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="librarySearchInput" placeholder="Search by title, story, or genre..." aria-label="Search Library">
+            <button type="button" id="clearSearchBtn" class="clear-search-btn" aria-label="Clear search" title="Clear search">&times;</button>
+        </div>
+    </div>
+
+    <!-- Library Filter Tabs (All Publications, Novels, Short Stories, My Favorites) -->
     <div class="library-filter-bar reveal" id="libraryFilterBar">
         <button class="lib-filter-btn active" data-filter="all" id="filterAllBtn">All Publications</button>
+        <button class="lib-filter-btn" data-filter="novel" id="filterNovelsBtn">📚 Novels</button>
+        <button class="lib-filter-btn" data-filter="story" id="filterStoriesBtn">📖 Short Stories</button>
         <button class="lib-filter-btn" data-filter="favorites" id="filterFavBtn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="color: #e53935;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
             My Favorites <span class="fav-count-badge" id="favCountBadge">0</span>
@@ -128,6 +139,9 @@
             </div>
         </noscript>
     </section>
+
+    <!-- Library Pagination (9 items per page) -->
+    <div class="library-pagination" id="libraryPagination" style="display: none;"></div>
 
     <!-- About Section -->
     <h2 class="section-title reveal" id="about">Our Story</h2>
@@ -193,6 +207,10 @@
                     <li>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         <span><strong>Editorial &amp; Cover Design Support:</strong> Our team assists with literary proofing, synopsis refinement, and aesthetic book cover artwork.</span>
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span><strong>100% Original Author Credit:</strong> Every story and novel submitted will be officially published strictly under your own author name with full copyright respect and an individual author spotlight.</span>
                     </li>
                     <li>
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -521,9 +539,11 @@
     </div>
 
     <!-- JavaScript Files (Ordered) -->
-    <!-- 1. Novels Data -->
+    <!-- 1. Novels & Stories Data Files -->
+    <script src="js/data/novels-list.js"></script>
+    <script src="js/data/stories-list.js"></script>
     <script src="js/data/novels.js"></script>
-    <!-- 2. Novels Cards Renderer -->
+    <!-- 2. Novels Cards Renderer & Favorites System -->
     <script src="js/render-novels.js"></script>
     <!-- 3. Authentication & User Profile System -->
     <script src="js/auth.js"></script>

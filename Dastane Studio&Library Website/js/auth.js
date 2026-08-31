@@ -49,12 +49,16 @@
     // Helper: Set active user session
     function setCurrentUser(user) {
         if (user) {
+            if (!Array.isArray(user.favorites)) user.favorites = [];
             localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(user));
         } else {
             localStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
         }
         updateHeaderUI();
         autoFillForms();
+        if (typeof window.refreshLibraryCatalog === 'function') {
+            window.refreshLibraryCatalog();
+        }
     }
 
     // Helper: Show Auth Status Message
@@ -586,6 +590,7 @@
                     username: username,
                     email: email || `${username}@dastane.local`,
                     avatar: '', // Default Name Initials
+                    favorites: [], // User-bound favorites list
                     password: password,
                     joinedDate: new Date().toLocaleDateString()
                 };
@@ -629,6 +634,8 @@
                     setAuthStatus('loginStatus', '❌ Invalid username/email or password. Please try again.', false);
                     return;
                 }
+
+                if (!Array.isArray(user.favorites)) user.favorites = [];
 
                 // Set active session
                 setCurrentUser(user);

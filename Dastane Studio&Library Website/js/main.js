@@ -83,12 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollReveals();
 
     /* ------------------------------------------------------------------------
-       4. Scroll Progress & Back-to-Top Button
+       4. Scroll Progress, Back-to-Top Button & Floating Header
        ------------------------------------------------------------------------ */
+    const header = document.querySelector('header');
     const toTop = document.getElementById('toTop');
     const scrollProgress = document.getElementById('scrollProgress');
 
     window.addEventListener('scroll', () => {
+        if (header) {
+            header.classList.toggle('scrolled', window.scrollY > 15);
+        }
         if (toTop) {
             toTop.classList.toggle('show', window.scrollY > 400);
         }
