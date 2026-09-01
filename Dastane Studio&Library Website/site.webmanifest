@@ -1,0 +1,17 @@
+{
+  "name": "Dastane Studio & Library",
+  "short_name": "Dastane Studio",
+  "description": "Premier literary hub and digital publishing platform dedicated to Urdu literature, suspense, romance, and audiobooks.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FCFBF7",
+  "theme_color": "#6B1D2F",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+================================================================================
+🎧 DASTANE STUDIO & LIBRARY - AUDIOBOOKS ADDING GUIDE (صوتی کتب گائیڈ)
+================================================================================
+📁 Coding File Path: js/data/audiobooks/audiobooks-list.js
+================================================================================
+
+💡 جب بھی آپ نئی "آڈیو بک (Audiobook)" یا "صوتی ڈرامہ (Voice Story)" شامل کرنا چاہیں:
+
+1️⃣ فائل کھولیں:
+   👉 js/data/audiobooks/audiobooks-list.js
+
+2️⃣ نیچے دیا گیا کوڈ کاپی کر کے لسٹ میں سب سے اوپر یا آخر میں پیسٹ کریں:
+
+{
+    id: 104, // ہر آڈیو بک کو نیا اور منفرد ID نمبر دیں (مثلاً 104, 105)
+    title: "ناول کا نام (Audio Edition)",
+    type: "audiobook",
+    tag: "Audio Drama", // یا Narrated Novel / Thriller Audio
+    categoryName: "Audiobook",
+    narrator: "صوتی پیشکش: داستان اسٹوڈیو",
+    duration: "18:45", // یا Available Soon
+    description: "یہاں صوتی کہانی کا دلچسپ تعارف اور تفصیل لکھیں۔",
+    buttonText: "Listen Audio", // یا اگر ریلیز نہ ہوئی ہو تو Available Soon... لکھیں
+    isAvailable: true, // اگر ابھی ریلیز نہ کرنی ہو تو false لکھیں
+    alertMessage: "This audiobook will be available soon!",
+    audioSrc: "https://your-audio-link.mp3", // آپ کی MP3 یا آڈیو فائل کا لنک
+    coverImage: "https://i.pinimg.com/...jpg" // تصویر کا لنک
+},
+
+--------------------------------------------------------------------------------
+✨ جادوئی خودکار خصوصیات (Automated Benefits):
+1. جیسے ہی آپ اس فائل میں نئی آڈیو بک شامل کریں گے، وہ website کے "🎧 Audiobooks" سیکشن میں فوراً آ جائے گی۔
+2. "All Publications" میں بھی خود بخود نظر آئے گی۔
+3. "Live Search Bar" میں بھی سرچ ہوگی۔
+4. یوزر جب "Listen Audio" دبائے گا تو نیچے تیرتا ہوا "Floating Audio Player" کھل جائے گا اور کہانی چل پڑے گی!
+================================================================================

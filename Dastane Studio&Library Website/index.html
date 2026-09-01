@@ -6,16 +6,58 @@
     <meta name="description" content="Dastane Studio & Library is a premier literary hub and digital publishing platform dedicated to preserving the finest Urdu literature. We deliver captivating suspense thrillers, timeless romance, and rich cultural stories from gifted regional voices straight to passionate readers worldwide across all your modern devices.">
     <meta name="theme-color" content="#6b1d2f">
     <meta name="google-site-verification" content="google43797268a923f02a">
-    <title>Dastane Studio and Library | Premium Literary Hub</title>
+    <title>Dastane Studio &amp; Library | Official Literary Hub &amp; Publications</title>
 
-    <!-- Favicon (Literary Book Icon) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236b1d2f'><path d='M4 19.5A2.5 2.5 0 0 1 6.5 17H20v-14H6.5A2.5 2.5 0 0 0 4 5.5v14z'/><path d='M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z'/></svg>">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dastanestudio-library.vercel.app/">
 
-    <!-- Open Graph / Social Media Preview (WhatsApp, Facebook, Twitter) -->
-    <meta property="og:title" content="Dastane Studio & Library | Premium Literary Hub">
-    <meta property="og:description" content="Dastane Studio & Library is a premier literary hub and digital publishing platform dedicated to preserving the finest Urdu literature, suspense thrillers, and emotional tales.">
+    <!-- Favicon & Site Icons (Google Search Snippet Logo) -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Brand & Search Engine Identifiers -->
+    <meta name="application-name" content="Dastane Studio &amp; Library">
+    <meta name="apple-mobile-web-app-title" content="Dastane Studio">
+
+    <!-- Open Graph / Social Media Preview (WhatsApp, Facebook, Twitter, Google) -->
+    <meta property="og:site_name" content="Dastane Studio &amp; Library">
+    <meta property="og:title" content="Dastane Studio &amp; Library | Official Literary Hub">
+    <meta property="og:description" content="Discover premier Urdu literature, suspense thrillers, romance novels, short stories, and dramatized audiobooks by talented regional writers.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dastanestudio.com">
+    <meta property="og:url" content="https://dastanestudio-library.vercel.app/">
+    <meta property="og:image" content="https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dastane Studio &amp; Library">
+    <meta name="twitter:description" content="Discover premier Urdu literature, suspense thrillers, romance novels, short stories, and dramatized audiobooks.">
+    <meta name="twitter:image" content="https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg">
+
+    <!-- Google Search Rich Snippet & Site Name Schema (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Dastane Studio & Library",
+      "alternateName": [
+        "Dastane Studio",
+        "Dastane Library",
+        "Dastane Studio Official",
+        "داستان اسٹوڈیو"
+      ],
+      "url": "https://dastanestudio-library.vercel.app/",
+      "description": "Premier literary hub and digital publishing platform dedicated to Urdu novels, short stories, and immersive audiobooks.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Dastane Studio",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dastanestudio-library.vercel.app/favicon.svg"
+        }
+      }
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -102,6 +144,13 @@
                 <h3>Author Mentoring</h3>
                 <p>We nurture emerging talent with guidance, feedback, and a supportive community of fellow storytellers.</p>
             </div>
+            <div class="service-card reveal">
+                <span class="s-icon" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                </span>
+                <h3>Audiobooks &amp; Dramas</h3>
+                <p>Bringing stories alive through expressive voice performances, ambient soundscapes, and immersive narration.</p>
+            </div>
         </div>
     </section>
 
@@ -118,11 +167,12 @@
         </div>
     </div>
 
-    <!-- Library Filter Tabs (All Publications, Novels, Short Stories, My Favorites) -->
+    <!-- Library Filter Tabs (All Publications, Novels, Short Stories, Audiobooks, My Favorites) -->
     <div class="library-filter-bar reveal" id="libraryFilterBar">
         <button class="lib-filter-btn active" data-filter="all" id="filterAllBtn">All Publications</button>
         <button class="lib-filter-btn" data-filter="novel" id="filterNovelsBtn">📚 Novels</button>
         <button class="lib-filter-btn" data-filter="story" id="filterStoriesBtn">📖 Short Stories</button>
+        <button class="lib-filter-btn" data-filter="audiobook" id="filterAudiobooksBtn">🎧 Audiobooks</button>
         <button class="lib-filter-btn" data-filter="favorites" id="filterFavBtn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="color: #e53935;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
             My Favorites <span class="fav-count-badge" id="favCountBadge">0</span>
@@ -538,12 +588,65 @@
         </div>
     </div>
 
+    <!-- Floating Audio Player Bar -->
+    <div class="floating-audio-player" id="dastaneAudioPlayer" style="display: none;">
+        <div class="audio-player-inner">
+            <!-- Track Info -->
+            <div class="player-track-info">
+                <img src="" alt="Audiobook cover" class="player-thumb" id="playerThumb">
+                <div class="player-text">
+                    <h4 class="player-title" id="playerTitle">Story Title</h4>
+                    <p class="player-narrator" id="playerNarrator">Narrated by Dastane Studio</p>
+                </div>
+            </div>
+
+            <!-- Controls & Progress -->
+            <div class="player-center-controls">
+                <div class="player-buttons">
+                    <button type="button" class="player-btn" id="playerRewindBtn" title="Rewind 10 seconds" aria-label="Rewind 10 seconds">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>
+                        <span style="font-size: 10px; font-weight: 700; margin-left: 2px;">10s</span>
+                    </button>
+                    <button type="button" class="player-btn player-play-btn" id="playerPlayPauseBtn" title="Play / Pause" aria-label="Play or Pause">
+                        <svg class="play-icon" id="playerPlayIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <svg class="pause-icon" id="playerPauseIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                    </button>
+                    <button type="button" class="player-btn" id="playerForwardBtn" title="Fast-forward 30 seconds" aria-label="Fast-forward 30 seconds">
+                        <span style="font-size: 10px; font-weight: 700; margin-right: 2px;">30s</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 17l5-5-5-5M6 17l5-5-5-5"/></svg>
+                    </button>
+                </div>
+                <div class="player-progress-row">
+                    <span class="player-time" id="playerCurrentTime">00:00</span>
+                    <div class="player-progress-bar-wrap" id="playerProgressWrap">
+                        <div class="player-progress-fill" id="playerProgressFill"></div>
+                    </div>
+                    <span class="player-time" id="playerDuration">00:00</span>
+                </div>
+            </div>
+
+            <!-- Volume & Close -->
+            <div class="player-right-controls">
+                <button type="button" class="player-speed-btn" id="playerSpeedBtn" title="Playback Speed">1.0x</button>
+                <div class="player-volume-wrap">
+                    <button type="button" class="player-btn" id="playerMuteBtn" title="Mute / Unmute" aria-label="Mute or Unmute">
+                        <svg class="vol-icon" id="playerVolIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                    </button>
+                    <input type="range" class="player-volume-slider" id="playerVolumeSlider" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+                </div>
+                <button type="button" class="player-btn player-close-btn" id="playerCloseBtn" title="Close Player" aria-label="Close Player">&times;</button>
+            </div>
+        </div>
+        <audio id="dastaneHtml5Audio" preload="metadata"></audio>
+    </div>
+
     <!-- JavaScript Files (Ordered) -->
-    <!-- 1. Novels & Stories Data Files -->
+    <!-- 1. Novels, Stories & Audiobooks Data Files -->
     <script src="js/data/novels-list.js"></script>
     <script src="js/data/stories-list.js"></script>
+    <script src="js/data/audiobooks-list.js"></script>
     <script src="js/data/novels.js"></script>
-    <!-- 2. Novels Cards Renderer & Favorites System -->
+    <!-- 2. Novels Cards Renderer, Audiobooks Engine & Favorites System -->
     <script src="js/render-novels.js"></script>
     <!-- 3. Authentication & User Profile System -->
     <script src="js/auth.js"></script>

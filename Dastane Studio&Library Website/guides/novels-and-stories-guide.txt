@@ -1,0 +1,48 @@
+================================================================================
+📖 DASTANE STUDIO & LIBRARY - NOVELS & STORIES ADDING GUIDE (ناول و افسانے)
+================================================================================
+📁 Novels Coding File: js/data/novels-list.js
+📁 Short Stories Coding File: js/data/stories-list.js
+================================================================================
+
+1️⃣ اگر نیا "ناول (Full Novel)" ایڈ کرنا ہو:
+فائل کھولیں: js/data/novels-list.js
+اور یہ بلاک کاپی کر کے شامل کریں:
+
+{
+    id: 6, // نیا منفرد نمبر
+    title: "ناول کا نام",
+    type: "novel",
+    tag: "Featured Novel",
+    categoryName: "Novel",
+    description: "یہاں ناول کا خلاصہ لکھیں۔",
+    buttonText: "Read Online",
+    isAvailable: true,
+    link: "https://thelastletterds.blogspot.com/",
+    coverImage: "https://i.pinimg.com/...jpg"
+},
+
+--------------------------------------------------------------------------------
+
+2️⃣ اگر نیا "افسانہ یا مختصر کہانی (Short Story)" ایڈ کرنا ہو:
+فائل کھولیں: js/data/stories-list.js
+اور یہ بلاک کاپی کر کے شامل کریں:
+
+{
+    id: 7, // نیا منفرد نمبر
+    title: "کہانی کا نام",
+    type: "story",
+    tag: "Short Story",
+    categoryName: "Short Story",
+    description: "یہاں کہانی کا خلاصہ لکھیں۔",
+    buttonText: "Read Online",
+    isAvailable: true,
+    link: "https://your-story-link.blogspot.com/",
+    coverImage: "https://i.pinimg.com/...jpg"
+},
+
+--------------------------------------------------------------------------------
+✨ جادوئی خودکار خصوصیات:
+* یہ تمام ناولز اور کہانیاں "All Publications" میں خود بخود شامل ہو جاتی ہیں۔
+* Pagination 100% خودکار ہے: پہلے پیج پر 9 ناولز رہیں گے اور دسواں ناول خود بخود Page 2 پر منتقل ہو جائے گا!
+================================================================================
