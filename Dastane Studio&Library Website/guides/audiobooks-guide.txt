@@ -9,28 +9,28 @@
 1️⃣ فائل کھولیں:
    👉 js/data/audiobooks/audiobooks-list.js
 
-2️⃣ نیچے دیا گیا کوڈ کاپی کر کے لسٹ میں سب سے اوپر یا آخر میں پیسٹ کریں:
+2️⃣ نیچے دیا گیا کوڈ کاپی کر کے لسٹ میں شامل کریں:
 
 {
-    id: 104, // ہر آڈیو بک کو نیا اور منفرد ID نمبر دیں (مثلاً 104, 105)
+    id: 104, // ہر آڈیو بک کو نیا اور منفرد ID نمبر دیں (مثلاً 104, 105, 106)
     title: "ناول کا نام (Audio Edition)",
     type: "audiobook",
     tag: "Audio Drama", // یا Narrated Novel / Thriller Audio
     categoryName: "Audiobook",
     narrator: "صوتی پیشکش: داستان اسٹوڈیو",
-    duration: "18:45", // یا Available Soon
+    duration: "Available Soon", // یا وقت مثلاً "18:45"
     description: "یہاں صوتی کہانی کا دلچسپ تعارف اور تفصیل لکھیں۔",
-    buttonText: "Listen Audio", // یا اگر ریلیز نہ ہوئی ہو تو Available Soon... لکھیں
-    isAvailable: true, // اگر ابھی ریلیز نہ کرنی ہو تو false لکھیں
-    alertMessage: "This audiobook will be available soon!",
-    audioSrc: "https://your-audio-link.mp3", // آپ کی MP3 یا آڈیو فائل کا لنک
-    coverImage: "https://i.pinimg.com/...jpg" // تصویر کا لنک
+    buttonText: "Available Soon...", // یا ریلیز کے بعد "Listen Audio" لکھیں
+    isAvailable: false, // ریلیز کرنے کے لیے true کریں ورنہ false رہنے دیں
+    alertMessage: "This audiobook will be available soon. Voice production is in progress!",
+    audioSrc: "", // ریلیز کے وقت MP3 یا آڈیو فائل کا لنک لگائیں
+    coverImage: "https://i.pinimg.com/...jpg" // کور تصویر کا لنک
 },
 
 --------------------------------------------------------------------------------
-✨ جادوئی خودکار خصوصیات (Automated Benefits):
-1. جیسے ہی آپ اس فائل میں نئی آڈیو بک شامل کریں گے، وہ website کے "🎧 Audiobooks" سیکشن میں فوراً آ جائے گی۔
-2. "All Publications" میں بھی خود بخود نظر آئے گی۔
-3. "Live Search Bar" میں بھی سرچ ہوگی۔
-4. یوزر جب "Listen Audio" دبائے گا تو نیچے تیرتا ہوا "Floating Audio Player" کھل جائے گا اور کہانی چل پڑے گی!
+✨ لائبریری فلٹر سسٹم کے اصول (Library Rules):
+1. "All Publications" میں آڈیو بکس مکس نہیں ہوں گی، وہاں صرف تحریری ناولز اور افسانے نظر آئیں گے۔
+2. جیسے ہی قاری لائبریری کے "🎧 Audiobooks" والے ٹیب پر کلک کرے گا، تمام آڈیو بکس اپنے خصوصی کارڈز اور دورانیہ (Duration) کے ساتھ سامنے آ جائیں گی۔
+3. جب تک `isAvailable: false` رہے گا، کارڈ پر "Available Soon..." آئے گا اور کلک کرنے پر نوٹس آئے گا۔
+4. جیسے ہی آپ `audioSrc` کا لنک ڈال کر `isAvailable: true` کریں گے، قاری کے کلک کرنے پر نیچے "Floating Audio Player" چل پڑے گا!
 ================================================================================

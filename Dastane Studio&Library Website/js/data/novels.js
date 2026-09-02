@@ -1,10 +1,13 @@
 /**
  * ============================================================================
- * 📚 DASTANE STUDIO & LIBRARY - MASTER PUBLICATIONS & AUDIOBOOKS CATALOG
+ * 📚 DASTANE STUDIO & LIBRARY - MASTER PUBLICATIONS CATALOG
  * ============================================================================
- * Contains the complete master catalog of all novels, short stories, and audiobooks.
- * Automatically merges with `js/data/novels-list.js`, `js/data/stories-list.js`,
- * and `js/data/audiobooks-list.js` with guaranteed fallback datasets.
+ * Contains the master catalog of all publications (Novels, Stories & Audiobooks).
+ * Automatically merges from:
+ * 1. `js/data/novels-list.js` (Novels)
+ * 2. `js/data/stories-list.js` (Short Stories)
+ * 3. `js/data/audiobooks/audiobooks-list.js` (Audiobooks)
+ * with built-in guaranteed fallbacks.
  * ============================================================================
  */
 
@@ -76,48 +79,6 @@
             link: "#",
             alertMessage: "Zindan-e-Khwab will be available to read soon.",
             coverImage: "https://i.pinimg.com/736x/32/d4/ff/32d4ff5780dc906d9459a159ea68a639.jpg"
-        },
-        {
-            id: 101,
-            title: "Dastan-e-Ishq (Audio Drama)",
-            type: "audiobook",
-            tag: "Audio Drama",
-            categoryName: "Audiobook",
-            narrator: "Dastane Studio Voice Artists",
-            duration: "18:45",
-            description: "An emotional audio storytelling journey of love, patience, and classical romance with immersive background music and voice acting.",
-            buttonText: "Listen Audio",
-            isAvailable: true,
-            audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-            coverImage: "https://i.pinimg.com/736x/9e/b4/db/9eb4dbdaa4d2b96c5cebf6b3a2d3192b.jpg"
-        },
-        {
-            id: 102,
-            title: "The Last Letter (Chapter 1: Voices of Heart)",
-            type: "audiobook",
-            tag: "Narrated Novel",
-            categoryName: "Audiobook",
-            narrator: "Dastane Studio Voice Artists",
-            duration: "24:10",
-            description: "Experience the heartfelt dialogue and dramatic college journey of Shehryar and Mushk in pure high-fidelity voice narration.",
-            buttonText: "Listen Audio",
-            isAvailable: true,
-            audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-            coverImage: "https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg"
-        },
-        {
-            id: 103,
-            title: "Zindan-e-Khwab (Midnight Suspense)",
-            type: "audiobook",
-            tag: "Suspense Audio",
-            categoryName: "Audiobook",
-            narrator: "Dastane Studio Voice Artists",
-            duration: "15:30",
-            description: "A spine-chilling psychological suspense audio production with intense atmospheric sound effects and voiceover.",
-            buttonText: "Listen Audio",
-            isAvailable: true,
-            audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-            coverImage: "https://i.pinimg.com/736x/32/d4/ff/32d4ff5780dc906d9459a159ea68a639.jpg"
         }
     ];
 
@@ -146,9 +107,6 @@
         }
         if (!window.storiesList || window.storiesList.length === 0) {
             window.storiesList = defaultCatalog.filter(i => i.type === 'story');
-        }
-        if (!window.audiobooksList || window.audiobooksList.length === 0) {
-            window.audiobooksList = defaultCatalog.filter(i => i.type === 'audiobook');
         }
     }
 

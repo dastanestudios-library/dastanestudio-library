@@ -1,0 +1,32 @@
+================================================================================
+👑 DASTANE STUDIO & LIBRARY - WEBSITE MASTER GUIDE (مکمل ویب سائٹ گائیڈ)
+================================================================================
+
+📁 فولڈر سٹرکچر اور اہم فائلز:
+
+1️⃣ کتب و ناولز کا ڈیٹا (Novels & Stories):
+   * js/data/novels-list.js (مکمل ناولز)
+   * js/data/stories-list.js (مختصر کہانیاں و افسانے)
+   * js/data/novels.js (ماسٹر کیٹلاگ کنیکٹر)
+
+2️⃣ آڈیو بکس کا ڈیٹا (Audiobooks):
+   * js/data/audiobooks/audiobooks-list.js (آڈیو بکس اور صوتی کہانیاں)
+
+3️⃣ اعلانات و خبریں (News & Announcements):
+   * js/data/news/news-list.js (9:16 نیوز اور اعلانات کا ڈیٹا اور ٹائمر)
+   * js/render-news.js (9:16 آٹو سلائیڈر اور پروگریس بارز کا انجن)
+
+4️⃣ گائیڈز فولڈر (Guides):
+   * guides/news-and-announcements-guide.txt (اعلانات شامل اور ٹائم ایڈٹ کرنے کی گائیڈ)
+   * guides/audiobooks-guide.txt (آڈیو بک شامل کرنے کا طریقہ)
+   * guides/novels-and-stories-guide.txt (ناول و افسانے شامل کرنے کا طریقہ)
+   * guides/forms-and-email-setup-guide.txt (فارمز اور ای میل نوٹیفکیشن کا طریقہ)
+   * guides/google-search-and-seo-guide.txt (گوگل سرچ و ایس ای او گائیڈ)
+
+5️⃣ فیچرز اور ڈیزائن:
+   * index.html (مین ویب سائٹ)
+   * css/style.css (اسٹائلنگ اور 9:16 اسٹوری باکس کی تھیمنگ)
+   * js/render-novels.js (لائبریری، سرچ اور آڈیو پلیئر انجن)
+   * js/auth.js (اکاؤنٹ، یوزر پروفائل اور فیورٹ سسٹم)
+   * js/main.js (فارمز سبمیشن، تھیم، اینیمیشنز اور فلوٹنگ ہیڈر)
+================================================================================

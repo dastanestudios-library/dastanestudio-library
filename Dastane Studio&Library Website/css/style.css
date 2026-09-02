@@ -736,6 +736,61 @@ header.scrolled {
     transform: translateX(-50%) translateY(0);
 }
 
+/* ==========================================================================
+   Dedicated Audiobooks Section
+   ========================================================================== */
+.audiobooks-wrapper {
+    padding: 60px 8% 80px;
+    background: color-mix(in srgb, var(--accent-color) 4%, var(--bg-color));
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin: 40px 0 60px;
+    text-align: center;
+}
+
+.audiobooks-header-wrap {
+    margin-bottom: 35px;
+}
+
+.audiobooks-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background-color: rgba(223, 178, 108, 0.15);
+    border: 1px solid rgba(223, 178, 108, 0.4);
+    color: #b38035;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .audiobooks-badge {
+    color: #dfb26c;
+    background-color: rgba(223, 178, 108, 0.12);
+}
+
+.audiobooks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 340px));
+    justify-content: center;
+    gap: 30px;
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.audio-book-card {
+    border-color: rgba(223, 178, 108, 0.35) !important;
+}
+
+.audio-book-card:hover {
+    border-color: #dfb26c !important;
+    box-shadow: 0 16px 36px rgba(223, 178, 108, 0.15) !important;
+}
+
 /* Audiobook Card Meta & Button */
 .audiobook-tag {
     background-color: #dfb26c !important;
@@ -2905,3 +2960,393 @@ footer {
     border-color: rgba(223, 178, 108, 0.3) !important;
     color: #dfb26c !important;
 }
+
+/* ==========================================================================
+   9:16 Story-Style News & Announcements Box
+   ========================================================================== */
+.news-announcements-section {
+    padding: 30px 6% 45px;
+    background: color-mix(in srgb, var(--accent-color) 3%, var(--bg-color));
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin: 30px 0 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.news-outer-wrapper {
+    max-width: 540px;
+    width: 100%;
+    text-align: center;
+}
+
+.news-section-header {
+    margin-bottom: 22px;
+}
+
+.news-live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(223, 178, 108, 0.15);
+    border: 1px solid rgba(223, 178, 108, 0.45);
+    color: #b38035;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+[data-theme="dark"] .news-live-pill {
+    color: #dfb26c;
+}
+
+.news-live-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #e53935;
+    border-radius: 50%;
+    animation: newsPulse 1.2s infinite;
+}
+
+@keyframes newsPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+.news-main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    color: var(--accent-color);
+    margin-bottom: 6px;
+}
+
+.news-main-sub {
+    font-size: 13.5px;
+    opacity: 0.85;
+    margin: 0 auto;
+    max-width: 440px;
+}
+
+/* 9:16 Vertical Story Box */
+.news-story-container {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 600px;
+    background: linear-gradient(150deg, #1f0b12 0%, #110609 50%, #080305 100%);
+    border-radius: 24px;
+    border: 1.5px solid rgba(223, 178, 108, 0.4);
+    box-shadow: 0 18px 45px rgba(107, 29, 47, 0.35), 0 0 0 1px rgba(223, 178, 108, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+}
+
+.news-story-container:hover {
+    box-shadow: 0 22px 55px rgba(107, 29, 47, 0.45), 0 0 0 1.5px rgba(223, 178, 108, 0.5);
+}
+
+/* Segmented Top Progress Bars */
+.news-story-bars {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    right: 16px;
+    z-index: 10;
+    display: flex;
+    gap: 6px;
+}
+
+.story-bar-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+}
+
+.story-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #dfb26c, #ffffff);
+    border-radius: 4px;
+    transition: width 0.05s linear;
+}
+
+/* Slide Tracks */
+.news-slides-track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 100%;
+    flex: 1;
+}
+
+.news-slide-item {
+    min-width: 100%;
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+    padding: 36px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    box-sizing: border-box;
+    opacity: 0.6;
+    transition: opacity 0.35s ease;
+}
+
+.news-slide-item.active {
+    opacity: 1;
+}
+
+.news-slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(24px) brightness(0.25);
+    opacity: 0.5;
+    z-index: 1;
+    transform: scale(1.1);
+}
+
+.news-slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(107, 29, 47, 0.4) 0%, rgba(8, 3, 5, 0.92) 80%);
+    z-index: 2;
+}
+
+.news-slide-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+/* Card Header */
+.news-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.news-tag-badge {
+    background: linear-gradient(135deg, #dfb26c, #b38035);
+    color: #141418;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+}
+
+.news-date-text {
+    font-size: 11.5px;
+    color: #d0c8b8;
+    opacity: 0.8;
+}
+
+/* Thumbnail */
+.news-card-thumb-wrap {
+    width: 110px;
+    height: 155px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(223, 178, 108, 0.6);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    margin: 8px auto 14px;
+    flex-shrink: 0;
+}
+
+.news-card-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Highlight Pill */
+.news-highlight-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(229, 57, 53, 0.2);
+    border: 1px solid rgba(229, 57, 53, 0.5);
+    color: #ff8a80;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+}
+
+/* Title & Subtitle */
+.news-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    color: #ffffff;
+    line-height: 1.35;
+    margin-bottom: 4px;
+}
+
+.news-card-subtitle {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-size: 14px;
+    color: #dfb26c;
+    margin-bottom: 12px;
+}
+
+/* Messages */
+.news-messages-box {
+    background: rgba(20, 10, 15, 0.6);
+    border: 1px solid rgba(223, 178, 108, 0.2);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    text-align: right;
+    max-height: 170px;
+    overflow-y: auto;
+}
+
+.news-msg-urdu {
+    font-family: 'Noto Nastaliq Urdu', serif;
+    font-size: 13.5px;
+    line-height: 1.9;
+    color: #fdfaf4;
+    direction: rtl;
+}
+
+.news-msg-english {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #d0c8b8;
+    margin-top: 8px;
+    text-align: left;
+    direction: ltr;
+    opacity: 0.9;
+    border-top: 1px dashed rgba(223, 178, 108, 0.25);
+    padding-top: 8px;
+}
+
+/* Action Button */
+.news-card-action {
+    margin-top: auto;
+    width: 100%;
+}
+
+.news-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: linear-gradient(135deg, #6b1d2f, #8c243e);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid rgba(223, 178, 108, 0.5);
+    transition: all 0.25s ease;
+}
+
+.news-action-btn:hover {
+    background: linear-gradient(135deg, #8c243e, #b32a48);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(107, 29, 47, 0.45);
+}
+
+/* Navigation Arrows */
+.news-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(14, 8, 10, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(223, 178, 108, 0.4);
+    color: #dfb26c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.news-nav-btn:hover {
+    background: #6b1d2f;
+    color: #ffffff;
+    border-color: #dfb26c;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.news-prev-btn {
+    left: 10px;
+}
+
+.news-next-btn {
+    right: 10px;
+}
+
+/* Footer Counter */
+.news-story-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.news-counter {
+    font-size: 11px;
+    color: #dfb26c;
+    font-weight: 700;
+    font-family: monospace;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.news-swipe-hint {
+    font-size: 10px;
+    color: #a09888;
+    opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+    .news-story-container {
+        min-height: 560px;
+    }
+    .news-card-thumb-wrap {
+        width: 95px;
+        height: 135px;
+    }
+    .news-card-title {
+        font-size: 15.5px;
+    }
+    .news-msg-urdu {
+        font-size: 12.5px;
+    }
+}
+

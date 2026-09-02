@@ -111,6 +111,11 @@
         <div class="stat"><div class="num" data-target="2026" data-suffix="" data-plain="true">0</div><div class="label">Est.</div></div>
     </section>
 
+    <!-- Latest News & Announcements (9:16 Story Slider Container) -->
+    <section class="news-announcements-section" id="newsAnnouncementsBox">
+        <!-- Rendered dynamically by js/render-news.js -->
+    </section>
+
     <!-- Services / What We Offer -->
     <h2 class="section-title reveal">What We Offer</h2>
     <p class="section-sub reveal">From the first spark of an idea to a finished title in a reader's hands — we walk the whole journey with our authors.</p>
@@ -180,7 +185,7 @@
     </div>
 
     <section class="books-grid" id="booksGrid">
-        <!-- Novel cards will be dynamically loaded here by js/render-novels.js -->
+        <!-- Publications loaded dynamically by js/render-novels.js -->
         <noscript>
             <div class="book-card">
                 <span class="tag">Featured Novel</span>
@@ -503,8 +508,8 @@
                         <input type="text" id="signupUsername" placeholder="e.g. abbas_reader" required autocomplete="username" pattern="[a-zA-Z0-9_.-]{3,30}" title="Username must be 3-30 characters">
                     </div>
                     <div class="auth-input-group">
-                        <label for="signupEmail">Email / Gmail Address *</label>
-                        <input type="email" id="signupEmail" placeholder="yourname@gmail.com" required autocomplete="email">
+                        <label for="signupEmail">Email / Gmail (Optional — 100% Privacy)</label>
+                        <input type="email" id="signupEmail" placeholder="yourname@gmail.com (Optional)" autocomplete="email">
                     </div>
                     <div class="auth-input-group">
                         <label for="signupPassword">Password (Min. 6 chars) *</label>
@@ -641,16 +646,19 @@
     </div>
 
     <!-- JavaScript Files (Ordered) -->
-    <!-- 1. Novels, Stories & Audiobooks Data Files -->
+    <!-- 1. Novels, Stories, Audiobooks & News Data Files -->
     <script src="js/data/novels-list.js"></script>
     <script src="js/data/stories-list.js"></script>
     <script src="js/data/audiobooks-list.js"></script>
+    <script src="js/data/news/news-list.js"></script>
     <script src="js/data/novels.js"></script>
     <!-- 2. Novels Cards Renderer, Audiobooks Engine & Favorites System -->
     <script src="js/render-novels.js"></script>
-    <!-- 3. Authentication & User Profile System -->
+    <!-- 3. News & Announcements Engine (9:16 Story Slider) -->
+    <script src="js/render-news.js"></script>
+    <!-- 4. Authentication & User Profile System -->
     <script src="js/auth.js"></script>
-    <!-- 4. Main Interactivity & Animations -->
+    <!-- 5. Main Interactivity & Animations -->
     <script src="js/main.js"></script>
 </body>
 </html>

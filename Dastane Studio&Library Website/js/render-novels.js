@@ -1,13 +1,16 @@
 /**
  * ============================================================================
- * 📖 DASTANE STUDIO & LIBRARY - ADVANCED NOVELS & AUDIOBOOKS ENGINE
+ * 📖 DASTANE STUDIO & LIBRARY - MASTER PUBLICATIONS & AUDIO ENGINE
  * ============================================================================
  * Features:
- * 1. Live Real-Time Search across all novels, stories, audiobooks, and genres.
- * 2. Multi-Category Filtering: All Publications, Novels, Short Stories, Audiobooks, Favorites.
- * 3. User-Account Specific Favorites (saved permanently per user account).
- * 4. 9-Items Per Page Grid Pagination (3 rows x 3 columns) with smooth page navigation.
- * 5. Full-Featured Floating HTML5 Audio Player for Audiobooks & Voice Dramas.
+ * 1. Unified Library Filter Bar:
+ *    - "All Publications": Exclusively shows written works (Novels + Short Stories).
+ *    - "📚 Novels": Shows Novels.
+ *    - "📖 Short Stories": Shows Short Stories.
+ *    - "🎧 Audiobooks": Shows Audiobooks with duration, narrator & audio player.
+ *    - "❤️ My Favorites": User-account saved reading list.
+ * 2. 9-Items Grid Pagination (3x3).
+ * 3. Floating Bottom Audio Player Widget for Audiobooks.
  * ============================================================================
  */
 
@@ -20,7 +23,7 @@
     let currentPage = 1;
     let currentAudiobook = null;
 
-    // Hardcoded Emergency Fallback Catalog
+    // Hardcoded Emergency Fallback
     const emergencyFallback = [
         {
             id: 1,
@@ -32,7 +35,6 @@
             buttonText: "Read Online",
             isAvailable: true,
             link: "https://thelastletterds.blogspot.com/",
-            alertMessage: "The reading system is currently loading...",
             coverImage: "https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg"
         },
         {
@@ -85,48 +87,6 @@
             isAvailable: false,
             link: "#",
             alertMessage: "Zindan-e-Khwab will be available to read soon.",
-            coverImage: "https://i.pinimg.com/736x/32/d4/ff/32d4ff5780dc906d9459a159ea68a639.jpg"
-        },
-        {
-            id: 101,
-            title: "Dastan-e-Ishq (Audio Drama)",
-            type: "audiobook",
-            tag: "Audio Drama",
-            categoryName: "Audiobook",
-            narrator: "Dastane Studio Voice Artists",
-            duration: "18:45",
-            description: "An emotional audio storytelling journey of love, patience, and classical romance with immersive background music and voice acting.",
-            buttonText: "Listen Audio",
-            isAvailable: true,
-            audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-            coverImage: "https://i.pinimg.com/736x/9e/b4/db/9eb4dbdaa4d2b96c5cebf6b3a2d3192b.jpg"
-        },
-        {
-            id: 102,
-            title: "The Last Letter (Chapter 1: Voices of Heart)",
-            type: "audiobook",
-            tag: "Narrated Novel",
-            categoryName: "Audiobook",
-            narrator: "Dastane Studio Voice Artists",
-            duration: "24:10",
-            description: "Experience the heartfelt dialogue and dramatic college journey of Shehryar and Mushk in pure high-fidelity voice narration.",
-            buttonText: "Listen Audio",
-            isAvailable: true,
-            audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-            coverImage: "https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg"
-        },
-        {
-            id: 103,
-            title: "Zindan-e-Khwab (Midnight Suspense)",
-            type: "audiobook",
-            tag: "Suspense Audio",
-            categoryName: "Audiobook",
-            narrator: "Dastane Studio Voice Artists",
-            duration: "15:30",
-            description: "A spine-chilling psychological suspense audio production with intense atmospheric sound effects and voiceover.",
-            buttonText: "Listen Audio",
-            isAvailable: true,
-            audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
             coverImage: "https://i.pinimg.com/736x/32/d4/ff/32d4ff5780dc906d9459a159ea68a639.jpg"
         }
     ];
@@ -211,7 +171,7 @@
         }, 2600);
     }
 
-    // Toggle a novel in favorites
+    // Toggle a publication in favorites
     function toggleFavorite(novelId, event) {
         if (event) {
             event.preventDefault();
@@ -280,7 +240,7 @@
         }
     }
 
-    // Get all catalog items with full fallback guarantees
+    // Get all catalog items
     function getAllCatalogItems() {
         if (typeof window !== 'undefined' && Array.isArray(window.novelsData) && window.novelsData.length > 0) {
             return window.novelsData;
@@ -330,7 +290,7 @@
         renderNovelCards();
     }
 
-    // Main Renderer
+    // Main Unified Renderer
     function renderNovelCards() {
         const grid = document.getElementById('booksGrid');
         const paginationEl = document.getElementById('libraryPagination');
@@ -358,7 +318,10 @@
         }
 
         // 2. Category Filter
-        if (currentFilter === 'novel') {
+        if (currentFilter === 'all') {
+            // "All Publications" exclusively shows written works (Novels + Short Stories, NO Audiobooks)
+            filtered = filtered.filter(item => item.type === 'novel' || item.type === 'story' || item.categoryName === 'Novel' || item.categoryName === 'Short Story');
+        } else if (currentFilter === 'novel') {
             filtered = filtered.filter(item => item.type === 'novel' || item.categoryName === 'Novel');
         } else if (currentFilter === 'story') {
             filtered = filtered.filter(item => item.type === 'story' || item.categoryName === 'Short Story');
@@ -376,8 +339,7 @@
                 const descMatch = (item.description || '').toLowerCase().includes(q);
                 const tagMatch = (item.tag || '').toLowerCase().includes(q);
                 const catMatch = (item.categoryName || '').toLowerCase().includes(q);
-                const narratorMatch = (item.narrator || '').toLowerCase().includes(q);
-                return titleMatch || descMatch || tagMatch || catMatch || narratorMatch;
+                return titleMatch || descMatch || tagMatch || catMatch;
             });
         }
 
@@ -388,7 +350,7 @@
                     <div style="font-size: 44px; margin-bottom: 12px;">📚❤️</div>
                     <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px;">No Favorite Books Saved Yet</h3>
                     <p style="font-size: 14.5px; opacity: 0.85; max-width: 440px; margin: 0 auto 18px; line-height: 1.6;">
-                        You haven't saved any stories to your reading list yet. Click the heart icon on any novel, story, or audiobook to access it here anytime!
+                        You haven't saved any stories to your reading list yet. Click the heart icon on any novel or story to access it here anytime!
                     </p>
                     <button class="read-btn" onclick="window.filterLibrary('all')">Browse All Publications</button>
                 </div>
@@ -426,9 +388,10 @@
 
         pagedItems.forEach((novel, index) => {
             const isFav = favs.includes(novel.id);
-            const isAudiobook = novel.type === 'audiobook';
+            const isAudio = (novel.type === 'audiobook' || novel.categoryName === 'Audiobook');
+
             const card = document.createElement('div');
-            card.className = 'book-card reveal visible' + (isAudiobook ? ' is-audiobook-card' : '');
+            card.className = `book-card ${isAudio ? 'audio-book-card' : ''} reveal visible`;
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
             card.style.transitionDelay = `${index * 0.05}s`;
@@ -450,27 +413,25 @@
                 : '';
 
             // Tag badge
-            const tagHtml = novel.tag ? `<span class="tag ${isAudiobook ? 'audiobook-tag' : ''}">${escapeHtml(novel.tag)}</span>` : '';
+            const tagHtml = novel.tag 
+                ? `<span class="tag ${isAudio ? 'audiobook-tag' : ''}">${escapeHtml(novel.tag)}</span>` 
+                : '';
+
+            // Audio Meta Pill
+            const audioMetaHtml = isAudio 
+                ? `<div class="audiobook-meta-pill">
+                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                     <span>${escapeHtml(novel.duration || 'Available Soon')} • ${escapeHtml(novel.narrator || 'Dastane Studio')}</span>
+                   </div>`
+                : '';
 
             // Title & Description
             const titleHtml = `<h3>${escapeHtml(novel.title)}</h3>`;
-            
-            // Audiobook Narrator & Duration Pill
-            let audioMetaHtml = '';
-            if (isAudiobook) {
-                audioMetaHtml = `
-                    <div class="audiobook-meta-pill">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        <span>${novel.duration || 'Full Audio'} • ${novel.narrator || 'Dastane Studio'}</span>
-                    </div>
-                `;
-            }
-
             const descHtml = `<p>${escapeHtml(novel.description || '')}</p>`;
 
             // Action button
             let buttonHtml = '';
-            if (isAudiobook) {
+            if (isAudio) {
                 if (novel.isAvailable === false || !novel.audioSrc) {
                     const safeTitle = (novel.title || '').replace(/'/g, "\\'");
                     const safeMsg = (novel.alertMessage || `${novel.title} will be available soon. Voice production is in progress!`).replace(/'/g, "\\'");
@@ -488,14 +449,16 @@
                         </button>
                     `;
                 }
-            } else if (novel.isAvailable === false) {
-                buttonHtml = `<button class="read-btn" disabled>${novel.buttonText || 'Coming Soon'}</button>`;
-            } else if (novel.link && novel.link !== '#' && novel.link.trim() !== '') {
-                buttonHtml = `<a href="${novel.link}" class="read-btn" target="_blank" rel="noopener noreferrer">${novel.buttonText || 'Read Online'}</a>`;
             } else {
-                const safeTitle = (novel.title || '').replace(/'/g, "\\'");
-                const safeMsg = (novel.alertMessage || '').replace(/'/g, "\\'");
-                buttonHtml = `<button class="read-btn" onclick="handleNovelRead('${safeTitle}', '${safeMsg}')">${novel.buttonText || 'Read Online'}</button>`;
+                if (novel.isAvailable === false) {
+                    buttonHtml = `<button class="read-btn" disabled>${novel.buttonText || 'Coming Soon'}</button>`;
+                } else if (novel.link && novel.link !== '#' && novel.link.trim() !== '') {
+                    buttonHtml = `<a href="${novel.link}" class="read-btn" target="_blank" rel="noopener noreferrer">${novel.buttonText || 'Read Online'}</a>`;
+                } else {
+                    const safeTitle = (novel.title || '').replace(/'/g, "\\'");
+                    const safeMsg = (novel.alertMessage || '').replace(/'/g, "\\'");
+                    buttonHtml = `<button class="read-btn" onclick="handleNovelRead('${safeTitle}', '${safeMsg}')">${novel.buttonText || 'Read Online'}</button>`;
+                }
             }
 
             card.innerHTML = `
@@ -618,7 +581,7 @@
     // 🎧 FLOATING AUDIO PLAYER CONTROLLER
     // =========================================================================
     function playAudiobook(audiobookId) {
-        const allItems = getAllCatalogItems();
+        let allItems = getAllCatalogItems();
         const book = allItems.find(b => b.id === Number(audiobookId));
         if (!book) return;
 
@@ -642,7 +605,7 @@
         }
 
         // Set Audio Source
-        audio.src = book.audioSrc || 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+        audio.src = book.audioSrc || '';
         audio.load();
 
         player.style.display = 'block';
@@ -820,18 +783,17 @@
     window.playAudiobook = playAudiobook;
 
     // Run initialization
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            initLibraryControls();
-            initAudioPlayerControls();
-            updateFavCountBadge();
-            renderNovelCards();
-        });
-    } else {
+    function initAll() {
         initLibraryControls();
         initAudioPlayerControls();
         updateFavCountBadge();
         renderNovelCards();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+        initAll();
     }
 
 })();

@@ -546,8 +546,8 @@
                 const password = document.getElementById('signupPassword').value;
                 const confirmPassword = document.getElementById('signupConfirmPassword').value;
 
-                if (!name || !username || !email || !password) {
-                    setAuthStatus('signupStatus', '⚠️ Please fill in all required fields (Name, Username, Email, Password).', false);
+                if (!name || !username || !password) {
+                    setAuthStatus('signupStatus', '⚠️ Please fill in all required fields (Name, Username, Password).', false);
                     return;
                 }
 
@@ -556,10 +556,20 @@
                     return;
                 }
 
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    setAuthStatus('signupStatus', '⚠️ Please enter a valid Email / Gmail address.', false);
-                    return;
+                // If user provided email, validate format & check duplication
+                if (email) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        setAuthStatus('signupStatus', '⚠️ Please enter a valid Email / Gmail address.', false);
+                        return;
+                    }
+
+                    const users = getUsersDB();
+                    const emailExists = users.find(u => u.email && u.email.toLowerCase() === email);
+                    if (emailExists) {
+                        setAuthStatus('signupStatus', '❌ An account with this Email / Gmail already exists! Please Sign In.', false);
+                        return;
+                    }
                 }
 
                 if (password.length < 6) {
@@ -581,18 +591,11 @@
                     return;
                 }
 
-                // 2. Strict Email / Gmail Duplication Check
-                const emailExists = users.find(u => u.email && u.email.toLowerCase() === email);
-                if (emailExists) {
-                    setAuthStatus('signupStatus', '❌ An account with this Email / Gmail already exists! A Gmail cannot be used for multiple accounts. Please Sign In.', false);
-                    return;
-                }
-
                 const newUser = {
                     id: 'usr_' + Date.now(),
                     name: name,
                     username: username,
-                    email: email,
+                    email: email || `${username}@dastane.local`,
                     avatar: '', // Default Name Initials
                     favorites: [], // User-bound favorites list
                     password: password,

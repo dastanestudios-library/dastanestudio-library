@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                // 1. Submit to Google Sheets (Unlimited lifetime logging + email)
+                // 1. Submit to Google Sheets (Unlimited lifetime logging)
                 fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -282,7 +282,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(payload)
                 }).catch(err => console.warn('Google Sheet log warning:', err));
 
-                // 2. Submit to Web3Forms in parallel
+                // 2. Direct Gmail Delivery via FormSubmit.co (Guaranteed direct to dastanestudios@gmail.com)
+                fetch('https://formsubmit.co/ajax/dastanestudios@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `✍️ New Writers / Reading Circle Submission: ${fullName} (${plan})`,
+                        _template: 'table',
+                        _captcha: 'false',
+                        _replyto: email,
+                        'Full Name': fullName,
+                        'First Name': firstName,
+                        'Surname': surname || 'N/A',
+                        'Email Address': email,
+                        'Phone / WhatsApp': phone,
+                        'Category / Role': plan,
+                        'Submission Date': new Date().toLocaleString()
+                    })
+                }).catch(err => console.warn('FormSubmit warning:', err));
+
+                // 3. Submit to Web3Forms backup channel
                 fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: {
@@ -383,7 +405,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify(payload)
                 }).catch(err => console.warn('Google Sheet log warning:', err));
 
-                // 2. Submit to Web3Forms
+                // 2. Direct Gmail Delivery via FormSubmit.co
+                fetch('https://formsubmit.co/ajax/dastanestudios@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `📩 New Reader Feedback from ${name}`,
+                        _template: 'table',
+                        _captcha: 'false',
+                        _replyto: email,
+                        'Sender Name': name,
+                        'Sender Email': email,
+                        'Feedback Message': message,
+                        'Submitted Date': new Date().toLocaleString()
+                    })
+                }).catch(err => console.warn('FormSubmit warning:', err));
+
+                // 3. Submit to Web3Forms backup channel
                 fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
                     headers: {
