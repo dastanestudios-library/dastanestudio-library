@@ -11,14 +11,19 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://dastanestudio-library.vercel.app/">
 
-    <!-- Favicon & Site Icons (Google Search Snippet Logo) -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
-    <link rel="manifest" href="site.webmanifest">
+    <!-- Favicon & Site Icons (Google Search Snippet Logo - PNG & SVG) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-192x192.png">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="manifest" href="/site.webmanifest">
 
     <!-- Brand & Search Engine Identifiers -->
     <meta name="application-name" content="Dastane Studio &amp; Library">
-    <meta name="apple-mobile-web-app-title" content="Dastane Studio">
+    <meta name="apple-mobile-web-app-title" content="Dastane Studio &amp; Library">
 
     <!-- Open Graph / Social Media Preview (WhatsApp, Facebook, Twitter, Google) -->
     <meta property="og:site_name" content="Dastane Studio &amp; Library">
@@ -26,37 +31,53 @@
     <meta property="og:description" content="Discover premier Urdu literature, suspense thrillers, romance novels, short stories, and dramatized audiobooks by talented regional writers.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://dastanestudio-library.vercel.app/">
-    <meta property="og:image" content="https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg">
+    <meta property="og:image" content="https://dastanestudio-library.vercel.app/favicon-512x512.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dastane Studio &amp; Library">
     <meta name="twitter:description" content="Discover premier Urdu literature, suspense thrillers, romance novels, short stories, and dramatized audiobooks.">
-    <meta name="twitter:image" content="https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg">
+    <meta name="twitter:image" content="https://dastanestudio-library.vercel.app/favicon-512x512.png">
 
     <!-- Google Search Rich Snippet & Site Name Schema (JSON-LD) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Dastane Studio & Library",
-      "alternateName": [
-        "Dastane Studio",
-        "Dastane Library",
-        "Dastane Studio Official",
-        "داستان اسٹوڈیو"
-      ],
-      "url": "https://dastanestudio-library.vercel.app/",
-      "description": "Premier literary hub and digital publishing platform dedicated to Urdu novels, short stories, and immersive audiobooks.",
-      "publisher": {
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://dastanestudio-library.vercel.app/#website",
+        "name": "Dastane Studio & Library",
+        "alternateName": [
+          "Dastane Studio",
+          "Dastane Library",
+          "Dastane Studio Official",
+          "داستان اسٹوڈیو"
+        ],
+        "url": "https://dastanestudio-library.vercel.app/",
+        "description": "Premier literary hub and digital publishing platform dedicated to Urdu novels, short stories, and immersive audiobooks.",
+        "inLanguage": ["en", "ur"],
+        "publisher": {
+          "@id": "https://dastanestudio-library.vercel.app/#organization"
+        }
+      },
+      {
+        "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Dastane Studio",
+        "@id": "https://dastanestudio-library.vercel.app/#organization",
+        "name": "Dastane Studio & Library",
+        "url": "https://dastanestudio-library.vercel.app/",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://dastanestudio-library.vercel.app/favicon.svg"
-        }
+          "url": "https://dastanestudio-library.vercel.app/favicon-512x512.png",
+          "width": 512,
+          "height": 512
+        },
+        "email": "dastanestudios@gmail.com",
+        "sameAs": [
+          "https://instagram.com/dastanestudio"
+        ]
       }
-    }
+    ]
     </script>
 
     <!-- Google Fonts -->
