@@ -452,6 +452,8 @@
             } else {
                 if (novel.isAvailable === false) {
                     buttonHtml = `<button class="read-btn" disabled>${novel.buttonText || 'Coming Soon'}</button>`;
+                } else if (novel.hasLanguageSelection === true) {
+                    buttonHtml = `<button class="read-btn" onclick="window.openLanguageModal(${novel.id})">${novel.buttonText || 'Read Online'}</button>`;
                 } else if (novel.link && novel.link !== '#' && novel.link.trim() !== '') {
                     buttonHtml = `<a href="${novel.link}" class="read-btn" target="_blank" rel="noopener noreferrer">${novel.buttonText || 'Read Online'}</a>`;
                 } else {
@@ -774,6 +776,205 @@
         }
     }
 
+    // =========================================================================
+    // 🌐 NOVEL LANGUAGE & EPISODES MODAL CONTROLLER
+    // =========================================================================
+    function openLanguageModal(novelId) {
+        const modal = document.getElementById('novelReaderModal');
+        const modalBody = document.getElementById('novelReaderModalBody');
+        if (!modal || !modalBody) return;
+
+        const allItems = getAllCatalogItems();
+        const novel = allItems.find(n => n.id === Number(novelId));
+        if (!novel) return;
+
+        const urduConfig = (novel.languages && novel.languages.urdu) || {
+            name: "Urdu Edition",
+            nativeName: "اردو ایڈیشن",
+            isAvailable: true,
+            statusBadge: "Available Now",
+            description: "مکمل سحر انگیز اقساط اردو زبان میں ملاحظہ فرمائیں",
+            episodes: []
+        };
+
+        const englishConfig = (novel.languages && novel.languages.english) || {
+            name: "English Edition",
+            nativeName: "انگلش ایڈیشن",
+            isAvailable: false,
+            statusBadge: "Coming Soon...",
+            description: "English translation edition",
+            alertMessage: "The English translation of this title will be available soon. Translation and proofing are in progress!"
+        };
+
+        modalBody.innerHTML = `
+            <div class="novel-modal-header">
+                ${novel.coverImage ? `<div class="novel-modal-cover-wrap"><img src="${novel.coverImage}" alt="${escapeHtml(novel.title)}" class="novel-modal-cover"></div>` : ''}
+                <div class="novel-modal-info">
+                    <span class="novel-modal-badge">${escapeHtml(novel.tag || 'Novel')}</span>
+                    <h3 class="novel-modal-title">${escapeHtml(novel.title)}</h3>
+                    <p class="novel-modal-desc">${escapeHtml(novel.description || '')}</p>
+                </div>
+            </div>
+
+            <div class="lang-selector-prompt">
+                <h4>Select Reading Edition • زبان منتخب کریں</h4>
+                <p>Choose your preferred language edition to begin reading:</p>
+            </div>
+
+            <div class="lang-options-grid">
+                <!-- 1. Urdu Edition Card -->
+                <div class="lang-option-card ${urduConfig.isAvailable ? 'available' : 'disabled'}" onclick="${urduConfig.isAvailable ? `window.openEpisodeList(${novel.id})` : `window.handleUnavailableLang('${escapeHtml(novel.title).replace(/'/g, "\\'")}', 'Urdu')`}">
+                    <div class="lang-card-left">
+                        <div class="lang-flag-icon">🇵🇰</div>
+                        <div class="lang-text-wrap">
+                            <div class="lang-primary-name">${escapeHtml(urduConfig.nativeName || 'اردو ایڈیشن')}</div>
+                            <div class="lang-sub-name">${escapeHtml(urduConfig.name || 'Urdu Edition')}</div>
+                            <div class="lang-card-desc">${escapeHtml(urduConfig.description || 'مکمل اقساط اور نئی کہانیاں')}</div>
+                        </div>
+                    </div>
+                    <div class="lang-card-right">
+                        <span class="lang-status-pill ${urduConfig.isAvailable ? 'available' : 'soon'}">
+                            ${escapeHtml(urduConfig.statusBadge || (urduConfig.isAvailable ? 'Available Now' : 'Coming Soon'))}
+                        </span>
+                        <svg class="lang-arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                </div>
+
+                <!-- 2. English Edition Card -->
+                <div class="lang-option-card ${englishConfig.isAvailable ? 'available' : 'disabled'}" onclick="${englishConfig.isAvailable ? `window.openEnglishEdition(${novel.id})` : `window.handleUnavailableLang('${escapeHtml(novel.title).replace(/'/g, "\\'")}', 'English')`}">
+                    <div class="lang-card-left">
+                        <div class="lang-flag-icon">🇬🇧</div>
+                        <div class="lang-text-wrap">
+                            <div class="lang-primary-name">${escapeHtml(englishConfig.name || 'English Edition')}</div>
+                            <div class="lang-sub-name">${escapeHtml(englishConfig.nativeName || 'انگلش ایڈیشن')}</div>
+                            <div class="lang-card-desc">${escapeHtml(englishConfig.description || 'English Translation Edition')}</div>
+                        </div>
+                    </div>
+                    <div class="lang-card-right">
+                        <span class="lang-status-pill ${englishConfig.isAvailable ? 'available' : 'soon'}">
+                            ${escapeHtml(englishConfig.statusBadge || (englishConfig.isAvailable ? 'Available Now' : 'Coming Soon...'))}
+                        </span>
+                        <svg class="lang-arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function openEpisodeList(novelId) {
+        const modal = document.getElementById('novelReaderModal');
+        const modalBody = document.getElementById('novelReaderModalBody');
+        if (!modal || !modalBody) return;
+
+        const allItems = getAllCatalogItems();
+        const novel = allItems.find(n => n.id === Number(novelId));
+        if (!novel) return;
+
+        const urduConfig = novel.languages && novel.languages.urdu;
+        const episodes = (urduConfig && Array.isArray(urduConfig.episodes) && urduConfig.episodes.length > 0)
+            ? urduConfig.episodes
+            : [{
+                episodeNumber: 1,
+                title: "Complete Novel / Episode 1",
+                nativeTitle: "قسط نمبر 1",
+                releaseDate: "Available",
+                link: novel.link || "https://thelastletterds.blogspot.com/",
+                isAvailable: true
+            }];
+
+        modalBody.innerHTML = `
+            <div class="episodes-top-nav">
+                <button type="button" class="modal-back-btn" onclick="window.openLanguageModal(${novel.id})">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    <span>Back to Languages</span>
+                </button>
+            </div>
+
+            <div class="novel-modal-header ep-header">
+                ${novel.coverImage ? `<div class="novel-modal-cover-wrap sm"><img src="${novel.coverImage}" alt="${escapeHtml(novel.title)}" class="novel-modal-cover"></div>` : ''}
+                <div class="novel-modal-info">
+                    <span class="novel-modal-badge">🇵🇰 Urdu Edition • اردو ایڈیشن</span>
+                    <h3 class="novel-modal-title">${escapeHtml(novel.title)}</h3>
+                    <p class="novel-modal-desc">Select an episode to read online • قسط منتخب کر کے مطالعہ کریں:</p>
+                </div>
+            </div>
+
+            <div class="episodes-list-wrap">
+                ${episodes.map((ep, idx) => `
+                    <div class="episode-card ${ep.isAvailable !== false ? 'available' : 'disabled'}">
+                        <div class="ep-num-badge">EP ${ep.episodeNumber || (idx + 1)}</div>
+                        <div class="ep-details">
+                            <div class="ep-title">${escapeHtml(ep.nativeTitle || ep.title)}</div>
+                            <div class="ep-sub">${escapeHtml(ep.title || '')}</div>
+                            <div class="ep-date-badge">${escapeHtml(ep.releaseDate || 'Released')}</div>
+                        </div>
+                        <div class="ep-action">
+                            ${ep.isAvailable !== false && ep.link && ep.link !== '#' ? `
+                                <a href="${ep.link}" target="_blank" rel="noopener noreferrer" class="ep-read-link-btn">
+                                    <span>Read Episode</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                            ` : `
+                                <button class="ep-read-link-btn disabled" disabled>Coming Soon</button>
+                            `}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    function handleUnavailableLang(novelTitle, langName) {
+        const msg = langName === 'English'
+            ? `The English translation of "${novelTitle}" is currently in editorial review and translation. It will be released soon! Stay tuned.`
+            : `The ${langName} edition of "${novelTitle}" will be available soon!`;
+
+        if (typeof window.showModal === 'function') {
+            window.showModal(`⏳ ${langName} Edition Coming Soon`, `<p style="font-size: 14.5px; line-height: 1.6;">${msg}</p>`);
+        } else {
+            alert(msg);
+        }
+    }
+
+    function openEnglishEdition(novelId) {
+        const allItems = getAllCatalogItems();
+        const novel = allItems.find(n => n.id === Number(novelId));
+        if (!novel) return;
+
+        const eng = novel.languages && novel.languages.english;
+        if (eng && eng.isAvailable && eng.link && eng.link !== '#') {
+            window.open(eng.link, '_blank');
+        } else {
+            handleUnavailableLang(novel.title, 'English');
+        }
+    }
+
+    function closeNovelReaderModal() {
+        const modal = document.getElementById('novelReaderModal');
+        if (modal) {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+    }
+
+    function initNovelReaderModalListeners() {
+        const modal = document.getElementById('novelReaderModal');
+        const closeBtn = document.getElementById('novelReaderModalClose');
+        const backdrop = document.getElementById('novelReaderModalBackdrop');
+
+        if (closeBtn) closeBtn.addEventListener('click', closeNovelReaderModal);
+        if (backdrop) backdrop.addEventListener('click', closeNovelReaderModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+                closeNovelReaderModal();
+            }
+        });
+    }
+
     // Expose methods globally
     window.filterLibrary = filterLibrary;
     window.toggleFavorite = toggleFavorite;
@@ -781,11 +982,17 @@
     window.clearLibrarySearch = clearLibrarySearch;
     window.refreshLibraryCatalog = renderNovelCards;
     window.playAudiobook = playAudiobook;
+    window.openLanguageModal = openLanguageModal;
+    window.openEpisodeList = openEpisodeList;
+    window.openEnglishEdition = openEnglishEdition;
+    window.handleUnavailableLang = handleUnavailableLang;
+    window.closeNovelReaderModal = closeNovelReaderModal;
 
     // Run initialization
     function initAll() {
         initLibraryControls();
         initAudioPlayerControls();
+        initNovelReaderModalListeners();
         updateFavCountBadge();
         renderNovelCards();
     }
@@ -797,3 +1004,4 @@
     }
 
 })();
+

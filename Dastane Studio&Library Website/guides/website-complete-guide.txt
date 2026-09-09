@@ -17,6 +17,7 @@
    * js/render-news.js (9:16 آٹو سلائیڈر اور پروگریس بارز کا انجن)
 
 4️⃣ گائیڈز فولڈر (Guides):
+   * guides/episodes-and-languages-guide.txt (ناولز میں اردو/انگلش ایڈیشن اور نئی اقساط ایڈ کرنے کی گائیڈ)
    * guides/news-and-announcements-guide.txt (اعلانات شامل اور ٹائم ایڈٹ کرنے کی گائیڈ)
    * guides/audiobooks-guide.txt (آڈیو بک شامل کرنے کا طریقہ)
    * guides/novels-and-stories-guide.txt (ناول و افسانے شامل کرنے کا طریقہ)

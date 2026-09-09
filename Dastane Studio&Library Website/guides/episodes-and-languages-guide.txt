@@ -1,0 +1,103 @@
+================================================================================
+🌐 DASTANE STUDIO & LIBRARY - LANGUAGES & EPISODES GUIDE (زبان و اقساط گائیڈ)
+================================================================================
+📁 متعلقہ کوڈنگ فائلز (Files to Edit):
+1. js/data/novels-list.js  (مین ڈیٹا فائل)
+2. js/data/novels.js       (بیک اپ اور فال بیک کیٹلاگ فائل)
+================================================================================
+
+یہ فیچر کیا کرتا ہے؟
+جب کوئی قاری ناول کے نیچے "Read Online" پر کلک کرے گا، تو ایک خوبصورت پاپ اپ کھلے گا:
+1. Urdu Edition (اردو ایڈیشن) -> اس پر کلک کرنے سے تمام اقساط کی لسٹ کھلے گی جہاں سے قاری قسط نمبر 1، قسط نمبر 2 وغیرہ پڑھ سکتا ہے۔
+2. English Edition (انگلش ایڈیشن) -> فی الحال "Coming Soon..." ہے، مستقبل میں اس کا لنک بھی شامل کیا جا سکتا ہے۔
+
+--------------------------------------------------------------------------------
+1️⃣ کسی بھی ناول پر یہ پاپ اپ آن (Enable) یا آف (Disable) کرنے کا طریقہ:
+--------------------------------------------------------------------------------
+فائل کھولیں: js/data/novels-list.js
+اس ناول کے ڈیٹا کے اندر یہ لائن دیکھیں:
+
+* پاپ اپ آن (Enable) کرنے کے لیے:
+    hasLanguageSelection: true,
+
+* پاپ اپ آف (Disable) کرنے کے لیے:
+    hasLanguageSelection: false,
+
+(نوٹ: جب false ہوگا تو پاپ اپ شو نہیں ہوگا اور براہِ راست ناول کا مین لنک کھلے گا)
+
+--------------------------------------------------------------------------------
+2️⃣ "دی لاسٹ لیٹر (The Last Letter)" یا کسی بھی ناول میں نئی قسط (Episode 3, 4 وغیرہ) شامل کرنے کا طریقہ:
+--------------------------------------------------------------------------------
+فائل کھولیں: js/data/novels-list.js
+ناول کے اندر "languages" -> "urdu" -> "episodes" کی لسٹ میں جائیں۔
+وہاں قسط 2 کے بعد کوما (,) لگا کر نیا قسط کوڈ شامل کریں:
+
+{
+    episodeNumber: 3,
+    title: "Episode 3",
+    nativeTitle: "قسط نمبر 3",
+    releaseDate: "16 Sep 2026",
+    link: "https://thelastletterds.blogspot.com/your-episode-3-link.html",
+    isAvailable: true
+},
+
+--------------------------------------------------------------------------------
+3️⃣ مکمل نمونہ کوڈ (Reference Template):
+--------------------------------------------------------------------------------
+{
+    id: 1,
+    title: "The Last Letter",
+    type: "novel",
+    tag: "Featured Novel",
+    categoryName: "Novel",
+    description: "A mysterious journey of untold words...",
+    buttonText: "Read Online",
+    isAvailable: true,
+    hasLanguageSelection: true, // پاپ اپ آن ہے
+    link: "https://thelastletterds.blogspot.com/",
+    coverImage: "https://i.pinimg.com/736x/88/21/df/8821df26f1df0e80824b232e01df2801.jpg",
+    languages: {
+        urdu: {
+            name: "Urdu Edition",
+            nativeName: "اردو ایڈیشن",
+            isAvailable: true,
+            statusBadge: "Available Now",
+            episodes: [
+                {
+                    episodeNumber: 1,
+                    title: "Episode 1",
+                    nativeTitle: "قسط نمبر 1",
+                    releaseDate: "Available",
+                    link: "https://thelastletterds.blogspot.com/",
+                    isAvailable: true
+                },
+                {
+                    episodeNumber: 2,
+                    title: "Episode 2",
+                    nativeTitle: "قسط نمبر 2",
+                    releaseDate: "9 Sep 2026",
+                    link: "https://thelastletterds.blogspot.com/2026/09/dastane-studio-last-letter-episode2.html",
+                    isAvailable: true
+                }
+                // اگلی قسط یہاں ایڈ کریں
+            ]
+        },
+        english: {
+            name: "English Edition",
+            nativeName: "انگلش ایڈیشن",
+            isAvailable: false, // فی الحال بند ہے
+            statusBadge: "Coming Soon...",
+            link: "#"
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+4️⃣ انگلش ایڈیشن آن کرنے کا طریقہ (جب دستیاب ہو جائے):
+--------------------------------------------------------------------------------
+انگلش ایڈیشن والے بلاک میں:
+    isAvailable: true,
+    statusBadge: "Available Now",
+    link: "https://your-english-edition-link.com",
+تبدیل کر دیں، قاری جیسے ہی انگلش پر کلک کرے گا انگلش والی کتاب اوپن ہو جائے گی!
+================================================================================

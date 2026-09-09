@@ -26,7 +26,44 @@
             isAvailable: true,
             link: "https://thelastletterds.blogspot.com/",
             alertMessage: "The reading system is currently loading...",
-            coverImage: "https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg"
+            coverImage: "https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg",
+            hasLanguageSelection: true,
+            languages: {
+                urdu: {
+                    name: "Urdu Edition",
+                    nativeName: "اردو ایڈیشن",
+                    isAvailable: true,
+                    statusBadge: "Available Now",
+                    description: "مکمل سحر انگیز اقساط اردو زبان میں ملاحظہ فرمائیں",
+                    episodes: [
+                        {
+                            episodeNumber: 1,
+                            title: "Episode 1: The First Letter",
+                            nativeTitle: "قسط نمبر 1: پہلا خط",
+                            releaseDate: "Released",
+                            isAvailable: true,
+                            link: "https://thelastletterds.blogspot.com/"
+                        },
+                        {
+                            episodeNumber: 2,
+                            title: "Episode 2: Destined Paths",
+                            nativeTitle: "قسط نمبر 2: تقدیر کے فیصلے",
+                            releaseDate: "Released • 9 Sep 2026",
+                            isAvailable: true,
+                            link: "https://thelastletterds.blogspot.com/2026/09/dastane-studio-last-letter-episode2.html"
+                        }
+                    ]
+                },
+                english: {
+                    name: "English Edition",
+                    nativeName: "انگلش ایڈیشن",
+                    isAvailable: false,
+                    statusBadge: "Coming Soon...",
+                    description: "English translation is currently in editorial review",
+                    alertMessage: "The English translation of 'The Last Letter' will be available soon. Translation and proofing are in progress!",
+                    link: "#"
+                }
+            }
         },
         {
             id: 5,
@@ -39,7 +76,8 @@
             isAvailable: false,
             link: "#",
             alertMessage: "Safar E Zayan is releasing soon. Stay tuned!",
-            coverImage: "https://i.pinimg.com/1200x/70/38/d4/7038d4e578dd91b0f074302ea12de001.jpg"
+            coverImage: "https://i.pinimg.com/1200x/70/38/d4/7038d4e578dd91b0f074302ea12de001.jpg",
+            hasLanguageSelection: false
         },
         {
             id: 2,
