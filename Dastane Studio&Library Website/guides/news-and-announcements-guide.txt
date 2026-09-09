@@ -1,36 +1,37 @@
 ================================================================================
-📢 DASTANE STUDIO & LIBRARY - NEWS & ANNOUNCEMENTS GUIDE (اعلانات و اپڈیٹس گائیڈ)
+📢 DASTANE STUDIO & LIBRARY - NEWS & ANNOUNCEMENTS GUIDE (Roman Urdu Guide)
 ================================================================================
 📁 Coding File Path: js/data/news/news-list.js
 ================================================================================
 
-💡 جب بھی آپ ویب سائٹ پر کوئی نیا نوٹس، خبر، یا ریلیز کی اپڈیٹ لگانا چاہیں:
+💡 Jab bhi aap website par koi naya notice, khabar, ya novel release update lagana chahein:
 
-1️⃣ فائل کھولیں:
+1️⃣ File open karein:
    👉 js/data/news/news-list.js
 
-2️⃣ لسٹ میں نیچے دیا گیا کوڈ کاپی کر کے شامل کریں یا موجودہ نوٹس کو تبدیل کریں:
+2️⃣ List mein neeche diya gaya block copy kar ke shamil karein ya mojooda notice ko edit karein:
 
 {
-    id: 4, // ہر نیوز کو نیا منفرد نمبر دیں (مثلاً 1, 2, 3, 4)
-    title: "خبر کا عنوان (English Title)",
-    subtitle: "اردو عنوان یا سب ٹائٹل",
-    tag: "Important Update • اہم اطلاع", // ٹیگ
-    date: "September 09, 2026", // تاریخ
-    displayDuration: 8, // ⏱️ کتنے سیکنڈز تک یہ نیوز چلے گی؟ (یہاں اپنی مرضی کے سیکنڈز لکھیں مثلاً 6, 8, 10, 12)
-    coverImage: "https://i.pinimg.com/...jpg", // کور تصویر کا لنک
-    highlightBadge: "📅 Release: 9 Sep 2026 • 8:00 PM", // ریڈ ہائی لائٹ بیج
-    messageUrdu: "یہاں اردو میں مکمل تفصیلی پیغام لکھیں۔",
-    messageEnglish: "Here write the English description or announcement details.",
-    actionText: "Read Online", // بٹن کا نام
-    actionLink: "https://thelastletterds.blogspot.com/" // بٹن کا لنک
+    id: 4, // Har news ko naya unique number dein (maslan 1, 2, 3, 4)
+    title: "News Title (English Heading)",
+    subtitle: "Urdu Unwan ya Sub-heading",
+    tag: "Important Update • اہم اطلاع", // Badge tag
+    tagType: "urgent", // urgent, update, release, feature
+    date: "September 09, 2026", // Tareekh
+    displayDuration: 8, // ⏱️ Kitnay seconds tak yeh news screen par chalegi (apni marzi ka time likhein: 6, 8, 10, 12)
+    coverImage: "https://i.pinimg.com/...jpg", // Cover picture ka link
+    highlightBadge: "📅 Release: 9 Sep 2026 • 8:00 PM", // Red highlight badge
+    messageUrdu: "Yahan Urdu script mein tafseeli paigham likhein.",
+    messageEnglish: "Here write the English announcement details.",
+    actionText: "Read Online", // Button ka text
+    actionLink: "https://thelastletterds.blogspot.com/2026/08/the-last-letter-dastane-studio.html" // Button ka link
 },
 
 --------------------------------------------------------------------------------
-✨ 9:16 اسٹوری باکس کی خودکار خصوصیات (Features):
-1. ⏱️ Editable Time: ہر نیوز کا وقت (displayDuration) آپ خود سیکنڈز میں سیٹ کر سکتے ہیں۔
-2. 🔄 Smooth Auto-Swipe: ٹائمر ختم ہوتے ہی اگلی نیوز دائیں سے بائیں (Right to Left) خود بخود سلائیڈ ہو جاتی ہے۔
-3. 👆 Touch & Swipe: موبائل پر یوزر انگلی سے دائیں بائیں swipe کر کے پچھلی اور اگلی نیوز دیکھ سکتا ہے۔
-4. ⏸️ Pause On Hover / Hold: جب یوزر ماؤس اوپر لائے گا یا سکرین کو ٹچ کر کے رکھے گا تو ٹائمر رک جائے گا تاکہ وہ سکون سے پورا نوٹس پڑھ سکے۔
-5. 📊 Top Story Progress Bars: انسٹاگرام اسٹوریز کی طرح اوپر لائیو بارز چلتی ہیں۔
+✨ 9:16 Story Box Ke Automatic Features:
+1. ⏱️ Editable Time: Har news ka time (displayDuration in seconds) aap khud set kar saktay hain.
+2. 🔄 Smooth Auto-Swipe: Timer khatam hotay hi agli news right-to-left automatically swipe ho jati hai.
+3. 👆 Touch & Swipe: Mobile screen par reader ungli se left/right swipe kar ke pichli aur agli khabar dekh sakta hai.
+4. ⏸️ Pause On Hover / Hold: Jab reader cursor layega ya mobile par ungli daba kar rakhega to timer pause ho jayega taake wo sakoon se khabar parh sake.
+5. 📊 Top Story Progress Bars: Instagram stories ki tarah upar live progress bars chalti hain.
 ================================================================================

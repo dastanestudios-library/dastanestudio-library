@@ -1,8 +1,11 @@
 /**
  * ============================================================================
- * 🎧 DASTANE STUDIO & LIBRARY - AUDIOBOOKS DATA FILE (صوتی کتب و ڈرامے)
+ * 🎧 DASTANE STUDIO & LIBRARY - AUDIOBOOKS DATA FILE (Audiobooks & Voice Dramas)
  * ============================================================================
- * 📁 FOLDER LOCATION: js/data/audiobooks/audiobooks-list.js
+ * 📁 FOLDER LOCATION: js/data/audiobooks-list.js
+ * 
+ * 💡 Roman Urdu Guide:
+ * Nayi audiobook add karne ke liye neeche diye gaye block ko copy karein aur details enter karein.
  * ============================================================================
  */
 

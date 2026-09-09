@@ -1,48 +1,56 @@
 ================================================================================
-🌐 DASTANE STUDIO & LIBRARY - LANGUAGES & EPISODES GUIDE (زبان و اقساط گائیڈ)
+🌐 DASTANE STUDIO & LIBRARY - LANGUAGES & EPISODES GUIDE (Roman Urdu Guide)
 ================================================================================
-📁 متعلقہ کوڈنگ فائلز (Files to Edit):
-1. js/data/novels-list.js  (مین ڈیٹا فائل)
-2. js/data/novels.js       (بیک اپ اور فال بیک کیٹلاگ فائل)
+📁 Mutaliqa Coding Files (Files to Edit):
+1. js/data/novels-list.js  (Main Data File)
+2. js/data/novels.js       (Backup aur Fallback Catalog File)
 ================================================================================
 
-یہ فیچر کیا کرتا ہے؟
-جب کوئی قاری ناول کے نیچے "Read Online" پر کلک کرے گا، تو ایک خوبصورت پاپ اپ کھلے گا:
-1. Urdu Edition (اردو ایڈیشن) -> اس پر کلک کرنے سے تمام اقساط کی لسٹ کھلے گی جہاں سے قاری قسط نمبر 1، قسط نمبر 2 وغیرہ پڑھ سکتا ہے۔
-2. English Edition (انگلش ایڈیشن) -> فی الحال "Coming Soon..." ہے، مستقبل میں اس کا لنک بھی شامل کیا جا سکتا ہے۔
+Yeh Feature Kya Karta Hai?
+Jab koi reader novel card ke neeche "Read Online" button par click karega,
+to ek clean aur attractive pop-up modal open hoga jisme 2 options honge:
+
+1. 🇵🇰 Urdu Edition (اردو ایڈیشن):
+   Is par click karne se tamam episodes (aqsaat) ki list open hogi jahan se reader
+   Episode 1, Episode 2 waghaira direct parh sakta hai.
+
+2. 🇬🇧 English Edition (انگلش ایڈیشن):
+   Filhal yeh "Coming Soon..." par set hai. Jab is par click karein to notification
+   samne aati hai ke English translation jald release hogi.
 
 --------------------------------------------------------------------------------
-1️⃣ کسی بھی ناول پر یہ پاپ اپ آن (Enable) یا آف (Disable) کرنے کا طریقہ:
+1️⃣ Kisi Bhi Novel Par Yeh Pop-up ON (Enable) Ya OFF (Disable) Karne Ka Tareeqa:
 --------------------------------------------------------------------------------
-فائل کھولیں: js/data/novels-list.js
-اس ناول کے ڈیٹا کے اندر یہ لائن دیکھیں:
+File open karein: js/data/novels-list.js
+Us novel ke block ke andar yeh setting dekhein:
 
-* پاپ اپ آن (Enable) کرنے کے لیے:
+* Pop-up ON karne ke liye:
     hasLanguageSelection: true,
 
-* پاپ اپ آف (Disable) کرنے کے لیے:
+* Pop-up OFF karne ke liye:
     hasLanguageSelection: false,
 
-(نوٹ: جب false ہوگا تو پاپ اپ شو نہیں ہوگا اور براہِ راست ناول کا مین لنک کھلے گا)
+(Note: Jab false hoga to language pop-up show nahi hoga aur reader ke click karne
+par direct novel ka main link open hoga).
 
 --------------------------------------------------------------------------------
-2️⃣ "دی لاسٹ لیٹر (The Last Letter)" یا کسی بھی ناول میں نئی قسط (Episode 3, 4 وغیرہ) شامل کرنے کا طریقہ:
+2️⃣ "The Last Letter" Ya Kisi Novel Mein Nayi Episode (Episode 3, 4 waghaira) Add Karna:
 --------------------------------------------------------------------------------
-فائل کھولیں: js/data/novels-list.js
-ناول کے اندر "languages" -> "urdu" -> "episodes" کی لسٹ میں جائیں۔
-وہاں قسط 2 کے بعد کوما (,) لگا کر نیا قسط کوڈ شامل کریں:
+File open karein: js/data/novels-list.js
+Novel ke andar "languages" -> "urdu" -> "episodes" ki list mein jayein.
+Wahan Episode 2 ke baad comma (,) lagakar yeh naya block paste karein:
 
 {
     episodeNumber: 3,
-    title: "Episode 3",
+    title: "Episode 3: New Title",
     nativeTitle: "قسط نمبر 3",
     releaseDate: "16 Sep 2026",
-    link: "https://thelastletterds.blogspot.com/your-episode-3-link.html",
+    link: "https://thelastletterds.blogspot.com/apka-episode-3-link.html",
     isAvailable: true
 },
 
 --------------------------------------------------------------------------------
-3️⃣ مکمل نمونہ کوڈ (Reference Template):
+3️⃣ Mukammal Reference Template (Sample Code):
 --------------------------------------------------------------------------------
 {
     id: 1,
@@ -50,12 +58,12 @@
     type: "novel",
     tag: "Featured Novel",
     categoryName: "Novel",
-    description: "A mysterious journey of untold words...",
+    description: "A poignant journey of love, patience, and destiny...",
     buttonText: "Read Online",
     isAvailable: true,
-    hasLanguageSelection: true, // پاپ اپ آن ہے
-    link: "https://thelastletterds.blogspot.com/",
-    coverImage: "https://i.pinimg.com/736x/88/21/df/8821df26f1df0e80824b232e01df2801.jpg",
+    hasLanguageSelection: true, // Pop-up ON hai
+    link: "https://thelastletterds.blogspot.com/2026/08/the-last-letter-dastane-studio.html",
+    coverImage: "https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg",
     languages: {
         urdu: {
             name: "Urdu Edition",
@@ -65,27 +73,27 @@
             episodes: [
                 {
                     episodeNumber: 1,
-                    title: "Episode 1",
-                    nativeTitle: "قسط نمبر 1",
-                    releaseDate: "Available",
-                    link: "https://thelastletterds.blogspot.com/",
+                    title: "Episode 1: The First Letter",
+                    nativeTitle: "قسط نمبر 1: پہلا خط",
+                    releaseDate: "Released",
+                    link: "https://thelastletterds.blogspot.com/2026/08/the-last-letter-dastane-studio.html",
                     isAvailable: true
                 },
                 {
                     episodeNumber: 2,
-                    title: "Episode 2",
-                    nativeTitle: "قسط نمبر 2",
-                    releaseDate: "9 Sep 2026",
+                    title: "Episode 2: Destined Paths",
+                    nativeTitle: "قسط نمبر 2: تقدیر کے فیصلے",
+                    releaseDate: "Released • 9 Sep 2026",
                     link: "https://thelastletterds.blogspot.com/2026/09/dastane-studio-last-letter-episode2.html",
                     isAvailable: true
                 }
-                // اگلی قسط یہاں ایڈ کریں
+                // Nayi episode (Episode 3) yahan add karein
             ]
         },
         english: {
             name: "English Edition",
             nativeName: "انگلش ایڈیشن",
-            isAvailable: false, // فی الحال بند ہے
+            isAvailable: false, // Filhal band hai (Coming Soon)
             statusBadge: "Coming Soon...",
             link: "#"
         }
@@ -93,11 +101,12 @@
 }
 
 --------------------------------------------------------------------------------
-4️⃣ انگلش ایڈیشن آن کرنے کا طریقہ (جب دستیاب ہو جائے):
+4️⃣ English Edition ON Karne Ka Tareeqa (Jab Available Ho Jaye):
 --------------------------------------------------------------------------------
-انگلش ایڈیشن والے بلاک میں:
+English Edition block mein ye tabdeeli karein:
     isAvailable: true,
     statusBadge: "Available Now",
-    link: "https://your-english-edition-link.com",
-تبدیل کر دیں، قاری جیسے ہی انگلش پر کلک کرے گا انگلش والی کتاب اوپن ہو جائے گی!
+    link: "https://your-english-translation-link.com",
+
+Is se reader jab English Edition par tap karega to direct English book open ho jayegi!
 ================================================================================

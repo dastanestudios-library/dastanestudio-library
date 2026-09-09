@@ -24,7 +24,7 @@
             messageUrdu: "معزز قارئین کرام! داستان اسٹوڈیو کی جانب سے خصوصی اعلان:\nناول 'دی لاسٹ لیٹر' (The Last Letter) کی دوسری قسط اب یکم ستمبر کے بجائے ان شاء اللہ 9 ستمبر 2026 (بدھ) کو رات ٹھیک 8:00 بجے ریلیز کی جائے گی۔\n\nتاخیر کے لیے ہم اپنے تمام پیارے قارئین سے دل سے معذرت خواہ ہیں۔ قسط نمبر 2 بے حد سنسنی خیز اور جذباتی موڑ پر مشتمل ہے، اسی لیے اعلیٰ معیار اور دلنشین کہانی کے لیے تفصیلی ایڈیٹنگ پر اضافی وقت لگایا جا رہا ہے۔ آپ کے بے پناہ صبر اور محبت کا شکریہ!",
             messageEnglish: "Dear Readers! Official announcement from Dastane Studio: Episode 2 of 'The Last Letter' will now officially release on Wednesday, 9th September 2026 at 8:00 PM PKT (Insha'Allah) instead of 1st September.\n\nWe sincerely apologize for this short delay. Episode 2 is packed with intense emotional drama and unexpected turns, which required meticulous editorial care. Thank you for your immense patience and love!",
             actionText: "Read Episode 1 Online",
-            actionLink: "https://thelastletterds.blogspot.com/"
+            actionLink: "https://thelastletterds.blogspot.com/2026/08/the-last-letter-dastane-studio.html"
         },
         {
             id: 2,

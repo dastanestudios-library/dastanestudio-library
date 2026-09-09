@@ -1,10 +1,10 @@
 /**
  * ============================================================================
- * 📖 DASTANE STUDIO & LIBRARY - SHORT STORIES DATA FILE (مختصر افسانے و کہانیاں)
+ * 📖 DASTANE STUDIO & LIBRARY - SHORT STORIES DATA FILE (Mukhtasar Afsanay)
  * ============================================================================
- * 💡 رہنمائی (Guide):
- * نیا افسانہ یا کہانی شامل کرنے کے لیے نیچے دیے گئے فارمیٹ کو کاپی کریں۔
- * To add a new short story, copy a block below and update the details.
+ * 💡 Roman Urdu Guide:
+ * Naya afsana ya kahani shamil karne ke liye neeche diye gaye format ko copy karein
+ * aur naye details enter karein.
  * ============================================================================
  */
 

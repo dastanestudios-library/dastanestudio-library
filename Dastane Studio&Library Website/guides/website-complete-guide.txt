@@ -1,33 +1,35 @@
 ================================================================================
-👑 DASTANE STUDIO & LIBRARY - WEBSITE MASTER GUIDE (مکمل ویب سائٹ گائیڈ)
+👑 DASTANE STUDIO & LIBRARY - WEBSITE MASTER GUIDE (Roman Urdu Master Guide)
 ================================================================================
 
-📁 فولڈر سٹرکچر اور اہم فائلز:
+📁 Folder Structure Aur Ahem Files:
 
-1️⃣ کتب و ناولز کا ڈیٹا (Novels & Stories):
-   * js/data/novels-list.js (مکمل ناولز)
-   * js/data/stories-list.js (مختصر کہانیاں و افسانے)
-   * js/data/novels.js (ماسٹر کیٹلاگ کنیکٹر)
+1️⃣ Kutub Aur Novels Ka Data (Novels & Stories):
+   * js/data/novels-list.js (Mukammal novels, language selection, aur episodes data)
+   * js/data/stories-list.js (Mukhtasar afsanay aur stories data)
+   * js/data/novels.js (Master catalog connector aur guaranteed fallback)
 
-2️⃣ آڈیو بکس کا ڈیٹا (Audiobooks):
-   * js/data/audiobooks/audiobooks-list.js (آڈیو بکس اور صوتی کہانیاں)
+2️⃣ Audiobooks Ka Data (Soti Kitabein):
+   * js/data/audiobooks-list.js (Audiobooks aur voice dramas ka data)
+   * js/data/audiobooks/audiobooks-list.js (Folder backup file)
 
-3️⃣ اعلانات و خبریں (News & Announcements):
-   * js/data/news/news-list.js (9:16 نیوز اور اعلانات کا ڈیٹا اور ٹائمر)
-   * js/render-news.js (9:16 آٹو سلائیڈر اور پروگریس بارز کا انجن)
+3️⃣ Ailanaat Aur Khabrein (News & Announcements):
+   * js/data/news/news-list.js (9:16 stories news data, banner details aur timer)
+   * js/render-news.js (9:16 auto slider aur progress bars ka engine)
 
-4️⃣ گائیڈز فولڈر (Guides):
-   * guides/episodes-and-languages-guide.txt (ناولز میں اردو/انگلش ایڈیشن اور نئی اقساط ایڈ کرنے کی گائیڈ)
-   * guides/news-and-announcements-guide.txt (اعلانات شامل اور ٹائم ایڈٹ کرنے کی گائیڈ)
-   * guides/audiobooks-guide.txt (آڈیو بک شامل کرنے کا طریقہ)
-   * guides/novels-and-stories-guide.txt (ناول و افسانے شامل کرنے کا طریقہ)
-   * guides/forms-and-email-setup-guide.txt (فارمز اور ای میل نوٹیفکیشن کا طریقہ)
-   * guides/google-search-and-seo-guide.txt (گوگل سرچ و ایس ای او گائیڈ)
+4️⃣ Guides Folder (Aapki Asani Ke Liye Roman Urdu Guides):
+   * guides/episodes-and-languages-guide.txt (Novels mein Urdu/English pop-up aur nayi episodes add karne ki guide)
+   * guides/novels-and-stories-guide.txt (Naye novels aur afsanay add karne ka tareeqa)
+   * guides/audiobooks-guide.txt (Audiobooks aur voice stories add karne ka tareeqa)
+   * guides/news-and-announcements-guide.txt (9:16 story news add aur timer edit karne ki guide)
+   * guides/forms-and-email-setup-guide.txt (Forms aur Gmail notifications ka setup)
+   * guides/google-search-and-seo-guide.txt (Google search name aur favicon update guide)
+   * guides/website-complete-guide.txt (Yeh master guide file)
 
-5️⃣ فیچرز اور ڈیزائن:
-   * index.html (مین ویب سائٹ)
-   * css/style.css (اسٹائلنگ اور 9:16 اسٹوری باکس کی تھیمنگ)
-   * js/render-novels.js (لائبریری، سرچ اور آڈیو پلیئر انجن)
-   * js/auth.js (اکاؤنٹ، یوزر پروفائل اور فیورٹ سسٹم)
-   * js/main.js (فارمز سبمیشن، تھیم، اینیمیشنز اور فلوٹنگ ہیڈر)
+5️⃣ Design Aur Functionality Engine:
+   * index.html (Main website page aur modals layout)
+   * css/style.css (Colors, themes, mobile responsiveness, aur modals styling)
+   * js/render-novels.js (Library renderer, live search bar, aur audio player controller)
+   * js/auth.js (User account creation, profile customize, aur favorites system)
+   * js/main.js (Forms submission handlers, dark/light theme, aur scroll animations)
 ================================================================================

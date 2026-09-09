@@ -878,10 +878,10 @@
             ? urduConfig.episodes
             : [{
                 episodeNumber: 1,
-                title: "Complete Novel / Episode 1",
+                title: "Episode 1: The First Letter",
                 nativeTitle: "قسط نمبر 1",
                 releaseDate: "Available",
-                link: novel.link || "https://thelastletterds.blogspot.com/",
+                link: novel.link || "https://thelastletterds.blogspot.com/2026/08/the-last-letter-dastane-studio.html",
                 isAvailable: true
             }];
 
@@ -929,13 +929,13 @@
 
     function handleUnavailableLang(novelTitle, langName) {
         const msg = langName === 'English'
-            ? `The English translation of "${novelTitle}" is currently in editorial review and translation. It will be released soon! Stay tuned.`
-            : `The ${langName} edition of "${novelTitle}" will be available soon!`;
+            ? `The English translation of "<strong>${escapeHtml(novelTitle)}</strong>" is currently in editorial review and translation. Insha'Allah it will be released soon! Stay tuned.<br><span style="display:block; margin-top:10px; font-size:13.5px; opacity:0.85;">"${escapeHtml(novelTitle)}" ka English edition translation aur editing ke marhalay mein hai. Jald release kiya jaye ga, Insha'Allah!</span>`
+            : `The ${escapeHtml(langName)} edition of "<strong>${escapeHtml(novelTitle)}</strong>" will be available soon!`;
 
         if (typeof window.showModal === 'function') {
-            window.showModal(`⏳ ${langName} Edition Coming Soon`, `<p style="font-size: 14.5px; line-height: 1.6;">${msg}</p>`);
+            window.showModal(`⏳ ${langName} Edition Coming Soon`, `<div style="font-size: 14.5px; line-height: 1.6; text-align: center;">${msg}</div>`);
         } else {
-            alert(msg);
+            alert(`The ${langName} edition of "${novelTitle}" is coming soon!`);
         }
     }
 

@@ -1,22 +1,23 @@
 ================================================================================
-📧 DASTANE STUDIO & LIBRARY - FORMS & GMAIL NOTIFICATIONS GUIDE
+📧 DASTANE STUDIO & LIBRARY - FORMS & GMAIL NOTIFICATIONS GUIDE (Roman Urdu Guide)
 ================================================================================
 
-ویب سائٹ پر 2 فارمز موجود ہیں:
-1. Writers & Reading Circle Form (رائٹرز و ق قارئین کا فارم)
-2. Reader Feedback Form (رائے و رابطہ فارم)
+Website par 2 forms mojood hain:
+1. Writers & Reading Circle Form (New writers aur readers ke liye)
+2. Reader Feedback Form (Raye aur rabtay ke liye)
 
 --------------------------------------------------------------------------------
-💡 فارم سبمٹ ہونے پر کیا ہوتا ہے؟ (Triple-Channel Security):
+💡 Form Submit Hone Par Kya Hota Hai? (Triple-Channel Security):
 
-1️⃣ FormSubmit.co (Direct to Gmail):
-   * فارم کا تمام ڈیٹا فوراً براہِ راست "dastanestudios@gmail.com" پر ای میل کے ذریعے چلا جاتا ہے۔
-   * ⚠️ ضروری نوٹ: جب پہلی بار کوئی فارم سبمٹ ہوگا تو FormSubmit آپ کے جی میل پر ایک مرتبہ تصدیقی ای میل (Activation Email) بھیجے گا۔
-   * آپ نے صرف اپنے Gmail (dastanestudios@gmail.com) میں جا کر اس ای میل میں "Activate Form" کے بٹن پر کلک کر دینا ہے۔ اس کے بعد ہر فارم سبمیشن بغیر کسی تاخیر کے فوراً آپ کے ان باکس میں آئے گی!
+1️⃣ FormSubmit.co (Direct To Gmail):
+   * Form ka mukammal data foran direct "dastanestudios@gmail.com" par email ke zariye pohanch jata hai.
+   * ⚠️ Zaroori Step: Jab pehli baar koi form submit hoga to FormSubmit aapke Gmail par 1 martaba tasdeeqi email (Activation Email) bhejega.
+   * Aap ne sirf apne Gmail (dastanestudios@gmail.com) mein ja kar us email mein "Activate Form" button par click kar dena hai.
+   * Iske baad har form submission baghair kisi delay ke seedhi aapke inbox mein aayegi!
 
-2️⃣ Google Sheets Database (لائف ٹائم آن لائن بیک اپ):
-   * تمام سبمیشنز گوگل شیٹ میں بھی خود بخود لاگ ہوتی رہتی ہیں۔
+2️⃣ Google Sheets Database (Lifetime Online Backup):
+   * Tamam submissions Google Sheets mein bhi automatically log aur save hoti rehti hain.
 
-3️⃣ Web3Forms (بیک اپ چینل):
-   * اضافی سیکیورٹی کے طور پر بیک اپ ای میل بھی بھیجتا ہے۔
+3️⃣ Web3Forms (Backup Channel):
+   * Extra security ke tor par backup email notification bhi bhejta hai.
 ================================================================================

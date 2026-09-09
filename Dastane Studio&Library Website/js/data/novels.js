@@ -24,7 +24,7 @@
             description: "A poignant journey of love, patience, and destiny between college students Shehryar Hashim and Mushk Farooqi.",
             buttonText: "Read Online",
             isAvailable: true,
-            link: "https://thelastletterds.blogspot.com/",
+            link: "https://thelastletterds.blogspot.com/2026/08/the-last-letter-dastane-studio.html",
             alertMessage: "The reading system is currently loading...",
             coverImage: "https://i.pinimg.com/736x/c5/b6/63/c5b6632df4ac5e540a5d55f9fc5737c6.jpg",
             hasLanguageSelection: true,
@@ -34,7 +34,7 @@
                     nativeName: "اردو ایڈیشن",
                     isAvailable: true,
                     statusBadge: "Available Now",
-                    description: "مکمل سحر انگیز اقساط اردو زبان میں ملاحظہ فرمائیں",
+                    description: "Mukammal sehar-angez aqsaat Urdu zuban mein mulaahiza farmayein",
                     episodes: [
                         {
                             episodeNumber: 1,

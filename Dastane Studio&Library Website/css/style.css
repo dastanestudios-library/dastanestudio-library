@@ -1512,12 +1512,43 @@ header.scrolled {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 10020;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     overflow-y: auto;
     padding: 20px 14px;
+}
+
+/* Global Alert / Confirmation Modal - Topmost z-index so it never hides behind reader modal */
+#confirmationModal {
+    z-index: 20000 !important;
+}
+
+#confirmationModal .modal-backdrop {
+    z-index: 20001;
+}
+
+#confirmationModal .modal-card {
+    z-index: 20002;
+}
+
+/* Novel Reader & Language Modal */
+#novelReaderModal {
+    z-index: 10030;
+}
+
+#novelReaderModal .modal-backdrop {
+    z-index: 10031;
+}
+
+#novelReaderModal .modal-card {
+    z-index: 10032;
+}
+
+/* Auth Modals */
+#authModal, #editProfileModal {
+    z-index: 10040;
 }
 
 .custom-modal.active {

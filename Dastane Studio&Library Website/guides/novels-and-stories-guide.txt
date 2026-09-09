@@ -1,40 +1,41 @@
 ================================================================================
-📖 DASTANE STUDIO & LIBRARY - NOVELS & STORIES ADDING GUIDE (ناول و افسانے گائیڈ)
+📖 DASTANE STUDIO & LIBRARY - NOVELS & STORIES ADDING GUIDE (Roman Urdu Guide)
 ================================================================================
 📁 Novels Coding File: js/data/novels-list.js
 📁 Short Stories Coding File: js/data/stories-list.js
 ================================================================================
 
-1️⃣ اگر نیا "ناول (Full Novel)" ایڈ کرنا ہو:
-فائل کھولیں: js/data/novels-list.js
-اور یہ بلاک کاپی کر کے شامل کریں:
+1️⃣ Agar Naya "Full Novel" Add Karna Ho:
+File open karein: js/data/novels-list.js
+Aur yeh block copy kar ke list mein add karein:
 
 {
-    id: 6, // نیا منفرد نمبر
-    title: "ناول کا نام",
+    id: 6, // Har novel ko naya unique ID number dein (maslan 6, 7, 8)
+    title: "Novel Ka Naam",
     type: "novel",
-    tag: "Featured Novel",
+    tag: "Featured Novel", // Ya Romantic / Mystery / Thriller
     categoryName: "Novel",
-    description: "یہاں ناول کا تفصیلی خلاصہ لکھیں۔",
+    description: "Yahan novel ka dilchasp aur tafseeli khulasa likhein.",
     buttonText: "Read Online",
-    isAvailable: true,
-    link: "https://thelastletterds.blogspot.com/",
+    isAvailable: true, // Agar available hai to true, warna false
+    hasLanguageSelection: false, // Agar Urdu/English pop-up chahiye to true karein
+    link: "https://your-novel-link.blogspot.com/",
     coverImage: "https://i.pinimg.com/...jpg"
 },
 
 --------------------------------------------------------------------------------
 
-2️⃣ اگر نیا "افسانہ یا مختصر کہانی (Short Story)" ایڈ کرنا ہو:
-فائل کھولیں: js/data/stories-list.js
-اور یہ بلاک کاپی کر کے شامل کریں:
+2️⃣ Agar Naya "Afsana Ya Mukhtasar Kahani (Short Story)" Add Karni Ho:
+File open karein: js/data/stories-list.js
+Aur yeh block copy kar ke list mein add karein:
 
 {
-    id: 7, // نیا منفرد نمبر
-    title: "کہانی کا نام",
+    id: 7, // Naya unique ID number
+    title: "Kahani Ka Naam",
     type: "story",
     tag: "Short Story",
     categoryName: "Short Story",
-    description: "یہاں کہانی کا دلچسپ خلاصہ لکھیں۔",
+    description: "Yahan kahani ka mukhtasar aur dilchasp khulasa likhein.",
     buttonText: "Read Online",
     isAvailable: true,
     link: "https://your-story-link.blogspot.com/",
@@ -42,9 +43,9 @@
 },
 
 --------------------------------------------------------------------------------
-✨ جادوئی خودکار خصوصیات:
-* یہ تمام ناولز اور کہانیاں "All Publications" لائبریری میں خود بخود شامل ہو جاتی ہیں۔
-* "Novels" اور "Short Stories" کے ٹیبز میں فلٹر ہوتی ہیں۔
-* "Live Search Bar" میں خود بخود سرچ ہوتی ہیں۔
-* Pagination 100% خودکار ہے: پہلے پیج پر 9 ناولز رہیں گے اور دسواں ناول خود بخود Page 2 پر منتقل ہو جائے گا!
+✨ Khudkaar Features (Automatic Library Features):
+* Yeh tamam novels aur afsanay "All Publications" library mein automatically show hotay hain.
+* "Novels" aur "Short Stories" tabs par click karne se khud filter ho jatay hain.
+* "Live Search Bar" mein naam ya description search karne par foran mil jatay hain.
+* Pagination 100% automatic hai: Pehle page par sirf 9 kitabein rehti hain, 10th kitaab khud Page 2 par shift ho jati hai!
 ================================================================================

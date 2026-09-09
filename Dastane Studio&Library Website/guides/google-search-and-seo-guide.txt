@@ -1,32 +1,33 @@
 ================================================================================
-🔍 DASTANE STUDIO & LIBRARY - GOOGLE SEARCH & SITE NAME GUIDE (گوگل گائیڈ)
+🔍 DASTANE STUDIO & LIBRARY - GOOGLE SEARCH & SITE NAME GUIDE (Roman Urdu Guide)
 ================================================================================
 
-❓ مسئلہ: گوگل پر ویب سائٹ کا نام "Dastane Studio" کے بجائے "Vercel" کیوں دکھتا ہے؟
+❓ Masla: Google search par website ka naam "Dastane Studio" ke bajaye "Vercel" kyu dikhta hai?
 
-💡 اصل وجہ:
-1. گوگل مفت سب ڈومینز (جیسے *.vercel.app یا *.github.io) کو ڈیفالٹ طور پر "Vercel" کمپنی کی سائٹ سمجھتا ہے جب تک کہ اسے مخصوص سائٹ نیم کا ڈیٹا (SiteName Schema) اور PNG Favicon نہ ملے۔
-2. گوگل سرچ رزلٹس میں لوگو دکھانے کے لیے صرف SVG کو نہیں بلکہ 48px اور 192px کے "PNG Favicons" کو ضروری مانتا ہے۔
-
---------------------------------------------------------------------------------
-🛠️ ہم نے کیا حل مکمل کر دیا ہے؟
-1. ہم نے تمام ضروری PNG Favicons (favicon-48x48.png, favicon-192x192.png, favicon-512x512.png, favicon.ico) تیار کر کے ویب سائٹ کے کوڈ میں لگا دیے ہیں۔
-2. ہم نے گوگل کا آفیشل WebSite اور Organization کا Schema سٹرکچرڈ ڈیٹا اپڈیٹ کر دیا ہے۔
-3. ہم نے sitemap.xml میں تازہ ترین تاریخ اپڈیٹ کر دی ہے۔
+💡 Asal Wajah:
+1. Google free sub-domains (jaise *.vercel.app ya *.github.io) ko default tor par Vercel platform ki site samajhta hai jab tak usay proper SiteName Schema data aur high-resolution PNG Favicons na milein.
+2. Google search results mein brand logo show karne ke liye SVG ke sath sath 48px aur 192px ke "PNG Favicons" lazmi mangta hai.
 
 --------------------------------------------------------------------------------
-🚀 اب گوگل کو فوری ریفریش کروانے کا طریقہ (1-Minute Step):
+🛠️ Hum Ne Coding Mein Kya Solution Mukammal Kiya Hai:
+1. Hum ne tamam standard PNG Favicons (favicon-48x48.png, favicon-192x192.png, favicon-512x512.png, favicon.ico) create kar ke website ke `<head>` tag mein configure kar diye hain.
+2. Google ka official WebSite aur Organization Schema structured data update kar diya hai.
+3. `sitemap.xml` mein fresh release date update kar di hai.
 
-1️⃣ گوگل سرچ کنسول کھولیں:
+--------------------------------------------------------------------------------
+🚀 Ab Google Ko Foran Re-Index Karwane Ka 1-Minute Tareeqa:
+
+1️⃣ Google Search Console open karein:
    👉 https://search.google.com/search-console
 
-2️⃣ اوپر سرچ بار (URL Inspection Bar) میں اپنی ویب سائٹ کا لنک لکھ کر Enter دبائیں:
+2️⃣ Upar top search bar (URL Inspection Bar) mein apni live website ka link likh kar Enter dabayein:
    👉 https://dastanestudio-library.vercel.app/
 
-3️⃣ سامنے دائیں طرف "TEST LIVE URL" کا بٹن دبائیں۔ (اس سے گوگل کا بوٹ لائیو ہماری نئی فائلز اور لوگو پڑھ لے گا)
+3️⃣ Samne right side par "TEST LIVE URL" button dabayein.
+   (Is se Google ka crawler bot live website par ja kar hamare naye icons aur brand schema ko read kar leta hai).
 
-4️⃣ ٹیسٹ پاس ہونے کے بعد "REQUEST INDEXING" پر کلک کر دیں۔
+4️⃣ Test complete hone ke baad "REQUEST INDEXING" par click kar dein.
 
-✨ نتیجہ:
-گوگل اب آپ کا نیا 48px PNG لوگو اور "Dastane Studio & Library" کا آفیشل برانڈ نیم ریڈ کر کے سرچ رزلٹس میں اپڈیٹ کر دے گا۔
+✨ Nateeja:
+Google bot aapka naya official favicon logo aur "Dastane Studio & Library" brand name cache kar lega aur search results mein update kar dega!
 ================================================================================
