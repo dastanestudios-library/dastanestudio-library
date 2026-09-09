@@ -42,7 +42,7 @@
                             nativeTitle: "قسط نمبر 1: پہلا خط",
                             releaseDate: "Released",
                             isAvailable: true,
-                            link: "https://thelastletterds.blogspot.com/"
+                            link: "https://thelastletterds.blogspot.com/2026/08/the-last-letter-dastane-studio.html"
                         },
                         {
                             episodeNumber: 2,
