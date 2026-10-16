@@ -1,0 +1,37 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Outer Burgundy Rim -->
+  <circle cx="256" cy="256" r="246" fill="#6B1D2F" />
+  <!-- Gold Ring -->
+  <circle cx="256" cy="256" r="236" fill="#DFB26C" />
+  <!-- Inner Burgundy Circle -->
+  <circle cx="256" cy="256" r="210" fill="#6B1D2F" />
+  <!-- Top Square Dot -->
+  <rect x="235.5" y="93" width="41" height="50" fill="#DFB26C" />
+  <!-- Letter D with semicircular cutout -->
+  <path fill="#DFB26C" fill-rule="evenodd" d="
+    M 144 164
+    L 235 164
+    L 235 348
+    L 144 348
+    Z
+    M 175 204
+    A 55 52 0 0 1 175 308
+    Z
+  "/>
+  <!-- Letter S -->
+  <path fill="#DFB26C" d="
+    M 277 164
+    L 368 164
+    L 368 195
+    L 308 195
+    L 308 241
+    L 368 241
+    L 368 348
+    L 277 348
+    L 277 317
+    L 337 317
+    L 337 272
+    L 277 272
+    Z
+  "/>
+</svg>

@@ -1,0 +1,351 @@
+================================================================================
+🏛️ DASTANE STUDIO & LIBRARY — OFFICIAL WEBSITE PROMO WIDGET (HTML CODE)
+================================================================================
+Yeh standalone HTML/CSS widget code hai jise aap Blogger ke sidebar mein (HTML/JavaScript Gadget),
+kisi bhi post ke aakhir ya darmiyan mein, ya kisi bhi doosri website par copy-paste kar sakte hain.
+
+Is widget ka design website ke shahi theme (Royal Burgundy #6b1d2f, Cream #fcfbf7, aur Gold #d4af37)
+se 100% match karta hai aur isme aapke tamam official links mojood hain:
+1. 🌐 Official Website: https://dastanestudio-library.vercel.app/
+2. ✉️ Official Gmail: dastanestudios@gmail.com
+3. 📸 Official Instagram: https://instagram.com/dastanestudio
+4. 📘 Official Facebook Page: https://www.facebook.com/share/19NsuykgJP/
+5. 👤 Official Facebook Profile: https://www.facebook.com/share/1C3BfCLwm6/
+6. ✍️ Writers Submission Guidance (Email + Manuscript Sample)
+
+================================================================================
+📋 COPY-PASTE READY WIDGET CODE (NICHE DIYA GAYA CODE COPY KAREIN):
+================================================================================
+
+<!-- DASTANE STUDIO OFFICIAL PROMO WIDGET START -->
+<div id="ds-promo-card-root" class="ds-promo-container">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@400;500;600;700&display=swap');
+
+    .ds-promo-container {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      box-sizing: border-box;
+      max-width: 680px;
+      margin: 30px auto;
+      padding: 35px 28px 28px;
+      background: linear-gradient(145deg, #ffffff 0%, #faf8f5 100%);
+      border: 1.5px solid rgba(212, 175, 55, 0.4);
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(107, 29, 47, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      direction: ltr;
+      color: #2b1b17;
+    }
+
+    .ds-promo-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #6b1d2f, #d4af37, #6b1d2f);
+    }
+
+    .ds-promo-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 54px;
+      height: 54px;
+      background: linear-gradient(135deg, #6b1d2f 0%, #450c18 100%);
+      color: #dfb26c;
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 800;
+      border-radius: 50%;
+      border: 2px solid #dfb26c;
+      box-shadow: 0 6px 18px rgba(107, 29, 47, 0.25);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .ds-promo-tag {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8c243e;
+      background: rgba(140, 36, 62, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 4px 16px;
+      border-radius: 25px;
+      margin-bottom: 12px;
+    }
+
+    .ds-promo-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #6b1d2f;
+      margin: 0 0 10px;
+      line-height: 1.3;
+    }
+
+    .ds-promo-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #5a4a42;
+      max-width: 540px;
+      margin: 0 auto 22px;
+    }
+
+    /* Main CTA: Visit Official Website */
+    .ds-main-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #6b1d2f 0%, #4a101d 100%);
+      color: #ffffff !important;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 14px 34px;
+      border-radius: 35px;
+      border: 1.5px solid rgba(223, 178, 108, 0.6);
+      box-shadow: 0 8px 25px rgba(107, 29, 47, 0.3);
+      transition: all 0.3s ease;
+      margin-bottom: 24px;
+    }
+
+    .ds-main-cta-btn:hover {
+      transform: translateY(-2.5px);
+      box-shadow: 0 12px 30px rgba(107, 29, 47, 0.45);
+      background: linear-gradient(135deg, #8c243e 0%, #5a1424 100%);
+      border-color: #dfb26c;
+      color: #ffffff !important;
+    }
+
+    /* Writers Callout Mini Box */
+    .ds-promo-writer-box {
+      background: #fcfbf7;
+      border: 1px dashed rgba(212, 175, 55, 0.65);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .ds-promo-writer-box h4 {
+      margin: 0 0 5px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #6b1d2f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .ds-promo-writer-box p {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #63534b;
+    }
+
+    .ds-promo-writer-box a {
+      color: #6b1d2f;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Social Pills Grid */
+    .ds-promo-links-title {
+      font-family: 'Cinzel', serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8c243e;
+      margin-bottom: 12px;
+    }
+
+    .ds-promo-social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .ds-promo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    /* Instagram Pill */
+    .ds-pill-insta {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #ffffff !important;
+      box-shadow: 0 3px 12px rgba(220, 39, 67, 0.25);
+    }
+    .ds-pill-insta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(220, 39, 67, 0.4);
+    }
+
+    /* Gmail Pill */
+    .ds-pill-mail {
+      background: #ffffff;
+      color: #c5221f !important;
+      border-color: #f1c7c7;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+    }
+    .ds-pill-mail:hover {
+      transform: translateY(-2px);
+      border-color: #c5221f;
+      box-shadow: 0 5px 15px rgba(197, 34, 31, 0.2);
+    }
+
+    /* Facebook Page Pill */
+    .ds-pill-fb-page {
+      background: #1877f2;
+      color: #ffffff !important;
+      box-shadow: 0 3px 12px rgba(24, 119, 242, 0.25);
+    }
+    .ds-pill-fb-page:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(24, 119, 242, 0.4);
+    }
+
+    /* Facebook Account Pill */
+    .ds-pill-fb-profile {
+      background: #0866ff;
+      color: #ffffff !important;
+      box-shadow: 0 3px 12px rgba(8, 102, 255, 0.25);
+    }
+    .ds-pill-fb-profile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(8, 102, 255, 0.4);
+    }
+
+    .ds-promo-footer {
+      font-size: 11px;
+      color: #8c7b75;
+      border-top: 1px solid rgba(212, 175, 55, 0.25);
+      padding-top: 14px;
+      margin-top: 8px;
+    }
+
+    /* Mobile Adaptability */
+    @media (max-width: 580px) {
+      .ds-promo-container {
+        padding: 26px 18px 20px;
+        margin: 20px 10px;
+        border-radius: 16px;
+      }
+      .ds-promo-title {
+        font-size: 23px;
+      }
+      .ds-main-cta-btn {
+        width: 100%;
+        padding: 13px 20px;
+        box-sizing: border-box;
+      }
+      .ds-promo-pill {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+
+  <!-- Top DS Monogram -->
+  <div class="ds-promo-logo-badge">DS</div>
+  <div class="ds-promo-tag">Dastane Studio &amp; Library</div>
+
+  <h3 class="ds-promo-title">Visit Our Official Website</h3>
+  <p class="ds-promo-desc">
+    Read complete Urdu novels, thrilling suspense sagas, and digital publications online for free. Discover new stories or join our reader &amp; writer circle.
+  </p>
+
+  <!-- 🌟 Big CTA Button -->
+  <div>
+    <a href="https://dastanestudio-library.vercel.app/" target="_blank" rel="noopener noreferrer" class="ds-main-cta-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span>Open Official Website &amp; Library</span>
+    </a>
+  </div>
+
+  <!-- ✍️ Writers Submission Callout Box -->
+  <div class="ds-promo-writer-box">
+    <h4>✍️ Want to Publish Your Novel / Story?</h4>
+    <p>
+      New writers are encouraged to email us directly at <a href="mailto:dastanestudios@gmail.com">dastanestudios@gmail.com</a>. Please attach a sample chapter or synopsis for prompt editorial review.
+    </p>
+  </div>
+
+  <!-- 🌐 Official Social & Contact Channels -->
+  <div class="ds-promo-links-title">Connect With Us Officially</div>
+  <div class="ds-promo-social-grid">
+    <!-- 1. Instagram -->
+    <a href="https://instagram.com/dastanestudio" target="_blank" rel="noopener noreferrer" class="ds-promo-pill ds-pill-insta" title="Follow on Instagram">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      <span>Instagram (@dastanestudio)</span>
+    </a>
+
+    <!-- 2. Gmail -->
+    <a href="mailto:dastanestudios@gmail.com" class="ds-promo-pill ds-pill-mail" title="Send Official Email">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+      <span>Email (dastanestudios@gmail.com)</span>
+    </a>
+
+    <!-- 3. Facebook Page -->
+    <a href="https://www.facebook.com/share/19NsuykgJP/" target="_blank" rel="noopener noreferrer" class="ds-promo-pill ds-pill-fb-page" title="Official Facebook Page">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
+      <span>Facebook Page</span>
+    </a>
+
+    <!-- 4. Facebook Account -->
+    <a href="https://www.facebook.com/share/1C3BfCLwm6/" target="_blank" rel="noopener noreferrer" class="ds-promo-pill ds-pill-fb-profile" title="Personal Facebook Profile">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88a9.947 9.947 0 0 1 12.28 0C16.43 19.18 14.03 20 12 20z"/></svg>
+      <span>Facebook Profile</span>
+    </a>
+  </div>
+
+  <div class="ds-promo-footer">
+    © 2026 Dastane Studio &amp; Library • Crafted by a Pakistani Writer • All Rights Reserved
+  </div>
+</div>
+<!-- DASTANE STUDIO OFFICIAL PROMO WIDGET END -->
+
+================================================================================
+💡 IS WIDGET KO BLOGGER YA WEBSITE MAIN LAGANE KA TARIQA:
+================================================================================
+
+Tariqa 1: Blogger Ke Sidebar Ya Footer Mein Lagana (Sab Se Behtareen):
+---------------------------------------------------------------------
+1. Blogger Dashboard kholiye.
+2. Baayein (left) menu se "Layout" par click karein.
+3. Sidebar ya Footer section mein "Add a Gadget" par click karein.
+4. List mein se "HTML/JavaScript" muntakhib karein.
+5. Title mein chahein to "Visit Official Website" likhein ya khali chor dein.
+6. Content wale box mein upar diya gaya poora code paste kar dein aur "Save" kar dein.
+
+Tariqa 2: Blogger Ki Kisi Bhi Post Ke Andar Lagana:
+--------------------------------------------------
+1. Blogger Post Editor kholiye.
+2. Top left par Pencil icon par click karke "HTML view" select karein.
+3. Post ke bilkul aakhir mein ya jahan aap chahein wahan yeh poora code paste kar dein.
+4. Post ko "Update" ya "Publish" kar dein.

@@ -995,6 +995,42 @@
         initNovelReaderModalListeners();
         updateFavCountBadge();
         renderNovelCards();
+
+        // Asynchronous Cloud Database Synchronization (Graceful Live Sync)
+        if (window.DastaneDB && typeof window.DastaneDB.isReady === 'function' && window.DastaneDB.isReady()) {
+            Promise.all([
+                window.DastaneDB.fetchNovels(),
+                window.DastaneDB.fetchStories(),
+                window.DastaneDB.fetchAudiobooks()
+            ]).then(([dbNovels, dbStories, dbAudio]) => {
+                let updated = [];
+                if (Array.isArray(dbNovels) && dbNovels.length > 0) {
+                    window.novelsList = dbNovels;
+                    updated = updated.concat(dbNovels);
+                } else if (Array.isArray(window.novelsList)) {
+                    updated = updated.concat(window.novelsList);
+                }
+                if (Array.isArray(dbStories) && dbStories.length > 0) {
+                    window.storiesList = dbStories;
+                    updated = updated.concat(dbStories);
+                } else if (Array.isArray(window.storiesList)) {
+                    updated = updated.concat(window.storiesList);
+                }
+                if (Array.isArray(dbAudio) && dbAudio.length > 0) {
+                    window.audiobooksList = dbAudio;
+                    updated = updated.concat(dbAudio);
+                } else if (Array.isArray(window.audiobooksList)) {
+                    updated = updated.concat(window.audiobooksList);
+                }
+                if (updated.length > 0) {
+                    window.novelsData = updated;
+                    renderNovelCards();
+                    updateFavCountBadge();
+                }
+            }).catch(e => {
+                console.warn('Supabase catalog sync error:', e);
+            });
+        }
     }
 
     if (document.readyState === 'loading') {

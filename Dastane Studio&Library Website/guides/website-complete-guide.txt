@@ -18,6 +18,7 @@
    * js/render-news.js (9:16 auto slider aur progress bars ka engine)
 
 4️⃣ Guides Folder (Aapki Asani Ke Liye Roman Urdu Guides):
+   * guides/blogger-template-guide.txt (Blogger ke liye matching theme HTML code aur social footer guide)
    * guides/episodes-and-languages-guide.txt (Novels mein Urdu/English pop-up aur nayi episodes add karne ki guide)
    * guides/novels-and-stories-guide.txt (Naye novels aur afsanay add karne ka tareeqa)
    * guides/audiobooks-guide.txt (Audiobooks aur voice stories add karne ka tareeqa)

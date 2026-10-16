@@ -292,6 +292,18 @@
     // Initialize News
     function init() {
         renderNewsSection();
+
+        // Asynchronous Cloud Database Synchronization for Announcements
+        if (window.DastaneDB && typeof window.DastaneDB.isReady === 'function' && window.DastaneDB.isReady()) {
+            window.DastaneDB.fetchNews().then(dbNews => {
+                if (Array.isArray(dbNews) && dbNews.length > 0) {
+                    window.newsList = dbNews;
+                    renderNewsSection();
+                }
+            }).catch(e => {
+                console.warn('Supabase news sync error:', e);
+            });
+        }
     }
 
     if (document.readyState === 'loading') {

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Dastane Studio &amp; Library</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- 1. AUTH GATE (Shown when logged out) -->
+    <div class="adm-auth-wrapper" id="admAuthGate">
+        <div class="adm-login-card">
+            <span class="adm-brand-badge">✨ Dastane Studio Official</span>
+            <h1>Author &amp; Studio Admin</h1>
+            <p class="adm-subtitle">Sign in to manage novels, episodes, audiobooks, and announcements.</p>
+
+            <form id="admLoginForm">
+                <div class="adm-form-group">
+                    <label for="admEmail">Admin Email</label>
+                    <input type="email" id="admEmail" class="adm-input" placeholder="dastanestudios@gmail.com" required autocomplete="email">
+                </div>
+                <div class="adm-form-group">
+                    <label for="admPassword">Password / Passcode</label>
+                    <input type="password" id="admPassword" class="adm-input" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="adm-btn-primary" id="admLoginBtn">
+                    <span>Sign In to Studio</span>
+                </button>
+                <div class="adm-status-box" id="admLoginStatus"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. ADMIN APP (Shown when authenticated) -->
+    <div class="adm-app" id="admApp" style="display: none;">
+        <!-- Sidebar Navigation -->
+        <aside class="adm-sidebar" id="admSidebar">
+            <div class="adm-sidebar-header">
+                <a href="index.html" class="adm-sidebar-logo" title="Back to Website">
+                    <span>داستان اسٹوڈیو</span>
+                </a>
+            </div>
+
+            <ul class="adm-nav-list">
+                <li class="adm-nav-item">
+                    <button class="adm-nav-btn active" data-tab="overview">
+                        <span>📊 Overview</span>
+                    </button>
+                </li>
+                <li class="adm-nav-item">
+                    <button class="adm-nav-btn" data-tab="novels">
+                        <span>📚 Novels &amp; Episodes</span>
+                        <span class="adm-badge" id="badgeNovels">0</span>
+                    </button>
+                </li>
+                <li class="adm-nav-item">
+                    <button class="adm-nav-btn" data-tab="stories">
+                        <span>📖 Short Stories</span>
+                        <span class="adm-badge" id="badgeStories">0</span>
+                    </button>
+                </li>
+                <li class="adm-nav-item">
+                    <button class="adm-nav-btn" data-tab="audiobooks">
+                        <span>🎧 Audiobooks</span>
+                        <span class="adm-badge" id="badgeAudiobooks">0</span>
+                    </button>
+                </li>
+                <li class="adm-nav-item">
+                    <button class="adm-nav-btn" data-tab="announcements">
+                        <span>📢 Announcements</span>
+                        <span class="adm-badge" id="badgeNews">0</span>
+                    </button>
+                </li>
+                <li class="adm-nav-item">
+                    <button class="adm-nav-btn" data-tab="subscribers">
+                        <span>👥 Reading Circle</span>
+                        <span class="adm-badge" id="badgeSubscribers">0</span>
+                    </button>
+                </li>
+                <li class="adm-nav-item">
+                    <button class="adm-nav-btn" data-tab="export">
+                        <span>💾 Offline Backup</span>
+                    </button>
+                </li>
+                <li class="adm-nav-item">
+                    <button class="adm-nav-btn" data-tab="settings">
+                        <span>⚙️ Database Settings</span>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="adm-sidebar-footer">
+                <span class="adm-user-chip" id="admUserDisplay">Admin</span>
+                <button class="adm-logout-btn" id="admLogoutBtn">Sign Out</button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="adm-main">
+            <!-- Topbar -->
+            <header class="adm-topbar">
+                <div class="adm-topbar-left">
+                    <button class="adm-menu-toggle" id="admMenuToggle" aria-label="Toggle menu">☰</button>
+                    <h1 class="adm-page-title" id="admCurrentTitle">Overview</h1>
+                </div>
+                <div class="adm-topbar-right">
+                    <span class="adm-db-status-pill" id="admDbStatus">Checking Cloud DB...</span>
+                    <a href="index.html" target="_blank" class="adm-btn-outline" title="Open live public library">
+                        <span>View Website ↗</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Dynamic Content Area -->
+            <div class="adm-content">
+
+                <!-- TAB 1: OVERVIEW -->
+                <section class="adm-pane active" id="pane-overview">
+                    <div class="adm-stats-grid">
+                        <div class="adm-stat-card">
+                            <div class="adm-stat-icon">📚</div>
+                            <div>
+                                <div class="adm-stat-number" id="statNovels">0</div>
+                                <div class="adm-stat-label">Published Novels</div>
+                            </div>
+                        </div>
+                        <div class="adm-stat-card">
+                            <div class="adm-stat-icon">📖</div>
+                            <div>
+                                <div class="adm-stat-number" id="statStories">0</div>
+                                <div class="adm-stat-label">Short Stories</div>
+                            </div>
+                        </div>
+                        <div class="adm-stat-card">
+                            <div class="adm-stat-icon">🎧</div>
+                            <div>
+                                <div class="adm-stat-number" id="statAudiobooks">0</div>
+                                <div class="adm-stat-label">Audiobooks</div>
+                            </div>
+                        </div>
+                        <div class="adm-stat-card">
+                            <div class="adm-stat-icon">📢</div>
+                            <div>
+                                <div class="adm-stat-number" id="statNews">0</div>
+                                <div class="adm-stat-label">Announcements</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="adm-pane-header">
+                        <div>
+                            <h2>Quick Actions</h2>
+                            <p>Direct shortcuts to publish content to your library.</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 30px;">
+                        <button class="adm-btn-primary" style="width: auto;" id="quickAddNovelBtn">+ Add Novel</button>
+                        <button class="adm-btn-primary" style="width: auto; background: #6b1d2f;" id="quickAddStoryBtn">+ Add Short Story</button>
+                        <button class="adm-btn-primary" style="width: auto; background: #8c243e;" id="quickAddAudioBtn">+ Add Audiobook</button>
+                        <button class="adm-btn-primary" style="width: auto; background: #2c1f26;" id="quickAddNewsBtn">+ Post Announcement</button>
+                    </div>
+
+                    <div class="adm-table-wrap" style="padding: 24px;">
+                        <h3 style="margin-bottom: 8px;">👑 Welcome, Dastane Studio Author!</h3>
+                        <p style="font-size: 14px; color: var(--adm-text-muted); line-height: 1.7;">
+                            Aapka naya Admin Panel 100% tayyar hai. Yahan se aap apne tamam novels, episodes (Urdu &amp; English links), short stories, aur news baghair coding ke live website par publish kar saktay hain.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- TAB 2: NOVELS & EPISODES -->
+                <section class="adm-pane" id="pane-novels">
+                    <div class="adm-pane-header">
+                        <div>
+                            <h2>Novels &amp; Serialized Works</h2>
+                            <p>Manage your novels, cover images, and episodic chapters.</p>
+                        </div>
+                        <button class="adm-btn-primary" style="width: auto;" id="openAddNovelModalBtn">+ Add New Novel</button>
+                    </div>
+
+                    <div class="adm-table-wrap">
+                        <table class="adm-table">
+                            <thead>
+                                <tr>
+                                    <th>Cover</th>
+                                    <th>Title &amp; Genre</th>
+                                    <th>Status</th>
+                                    <th>Episodes</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="novelsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- TAB 3: SHORT STORIES -->
+                <section class="adm-pane" id="pane-stories">
+                    <div class="adm-pane-header">
+                        <div>
+                            <h2>Short Stories (مختصر افسانے)</h2>
+                            <p>Manage single-release short stories and emotional tales.</p>
+                        </div>
+                        <button class="adm-btn-primary" style="width: auto;" id="openAddStoryModalBtn">+ Add Short Story</button>
+                    </div>
+
+                    <div class="adm-table-wrap">
+                        <table class="adm-table">
+                            <thead>
+                                <tr>
+                                    <th>Cover</th>
+                                    <th>Title</th>
+                                    <th>Tag</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="storiesTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- TAB 4: AUDIOBOOKS -->
+                <section class="adm-pane" id="pane-audiobooks">
+                    <div class="adm-pane-header">
+                        <div>
+                            <h2>Audiobooks &amp; Voice Dramas (صوتی کتب)</h2>
+                            <p>Manage narrated audio titles and ambient voice productions.</p>
+                        </div>
+                        <button class="adm-btn-primary" style="width: auto;" id="openAddAudioModalBtn">+ Add Audiobook</button>
+                    </div>
+
+                    <div class="adm-table-wrap">
+                        <table class="adm-table">
+                            <thead>
+                                <tr>
+                                    <th>Cover</th>
+                                    <th>Title</th>
+                                    <th>Narrator &amp; Duration</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="audiobooksTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- TAB 5: ANNOUNCEMENTS / NEWS -->
+                <section class="adm-pane" id="pane-announcements">
+                    <div class="adm-pane-header">
+                        <div>
+                            <h2>Latest News &amp; Announcements</h2>
+                            <p>Updates displayed on the 9:16 vertical story slider on the home page.</p>
+                        </div>
+                        <button class="adm-btn-primary" style="width: auto;" id="openAddNewsModalBtn">+ Post Announcement</button>
+                    </div>
+
+                    <div class="adm-table-wrap">
+                        <table class="adm-table">
+                            <thead>
+                                <tr>
+                                    <th>Cover</th>
+                                    <th>Title &amp; Badge</th>
+                                    <th>Tag</th>
+                                    <th>Duration</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="newsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- TAB 6: SUBSCRIBERS / INQUIRIES -->
+                <section class="adm-pane" id="pane-subscribers">
+                    <div class="adm-pane-header">
+                        <div>
+                            <h2>Reading Circle &amp; Writer Registrations</h2>
+                            <p>Readers and aspiring authors who joined through the website form.</p>
+                        </div>
+                    </div>
+
+                    <div class="adm-table-wrap">
+                        <table class="adm-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone / WhatsApp</th>
+                                    <th>Role / Interest</th>
+                                    <th>Registered Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subscribersTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- TAB 7: OFFLINE BACKUP & FILE EXPORT -->
+                <section class="adm-pane" id="pane-export">
+                    <div class="adm-pane-header">
+                        <div>
+                            <h2>1-Click Offline Data Files Backup</h2>
+                            <p>Generate exact JavaScript code for static files (novels-list.js, stories-list.js, etc.).</p>
+                        </div>
+                        <button class="adm-btn-primary" style="width: auto;" id="generateBackupBtn">Generate JS Code</button>
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label for="backupCodeOutput">Generated JS Code (Copy and save in your js/data folder whenever you want an offline copy):</label>
+                        <textarea id="backupCodeOutput" class="adm-textarea" style="height: 380px; font-family: monospace; font-size: 12px;" readonly placeholder="Click 'Generate JS Code' to create copyable static files code..."></textarea>
+                    </div>
+                </section>
+
+                <!-- TAB 8: DATABASE SETTINGS -->
+                <section class="adm-pane" id="pane-settings">
+                    <div class="adm-pane-header">
+                        <div>
+                            <h2>Supabase Cloud Database Settings</h2>
+                            <p>Configure your free Supabase project to unlock live cloud sync.</p>
+                        </div>
+                    </div>
+
+                    <div class="adm-table-wrap" style="padding: 24px; max-width: 700px;">
+                        <form id="admSettingsForm">
+                            <div class="adm-form-group">
+                                <label for="settingSupabaseUrl">Supabase Project URL</label>
+                                <input type="url" id="settingSupabaseUrl" class="adm-input" placeholder="https://yourprojectid.supabase.co">
+                                <span style="font-size: 11.5px; color: var(--adm-text-muted);">Found in: Supabase Dashboard &gt; Project Settings &gt; API &gt; Project URL</span>
+                            </div>
+
+                            <div class="adm-form-group">
+                                <label for="settingSupabaseAnonKey">Supabase Public 'anon' Key</label>
+                                <input type="text" id="settingSupabaseAnonKey" class="adm-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+                                <span style="font-size: 11.5px; color: var(--adm-text-muted);">Found in: Supabase Dashboard &gt; Project Settings &gt; API &gt; Project API keys (anon / public)</span>
+                            </div>
+
+                            <div style="display: flex; gap: 12px; margin-top: 20px;">
+                                <button type="submit" class="adm-btn-primary" style="width: auto;">Save Settings</button>
+                                <button type="button" class="adm-btn-outline" id="testDbConnectionBtn">Test Connection</button>
+                            </div>
+                            <div class="adm-status-box" id="settingsStatus"></div>
+                        </form>
+
+                        <div style="margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--adm-border);">
+                            <h4 style="color: var(--adm-gold); margin-bottom: 8px;">💡 SQL Setup Script</h4>
+                            <p style="font-size: 13px; color: var(--adm-text-muted); line-height: 1.6;">
+                                Database tables create karne ke liye aapke project folder mein <strong><code>supabase-setup.sql</code></strong> script mojood hai. Sirf Supabase ke SQL Editor mein paste karke "Run" dabayein!
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- 3. MODALS (Add/Edit Forms) -->
+
+    <!-- Novel Modal -->
+    <div class="adm-modal-backdrop" id="novelModal">
+        <div class="adm-modal">
+            <div class="adm-modal-header">
+                <h3 class="adm-modal-title" id="novelModalTitle">Add New Novel</h3>
+                <button class="adm-modal-close" data-close="novelModal">&times;</button>
+            </div>
+            <form id="novelForm">
+                <input type="hidden" id="novelId">
+                <div class="adm-form-group">
+                    <label for="novelTitle">Novel Title *</label>
+                    <input type="text" id="novelTitle" class="adm-input" placeholder="e.g. The Last Letter" required>
+                </div>
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label for="novelTag">Tag / Badge</label>
+                        <input type="text" id="novelTag" class="adm-input" placeholder="Featured Novel, Romantic Suspense...">
+                    </div>
+                    <div class="adm-form-group">
+                        <label for="novelCategory">Category</label>
+                        <input type="text" id="novelCategory" class="adm-input" value="Novel">
+                    </div>
+                </div>
+                <div class="adm-form-group">
+                    <label for="novelDesc">Synopsis / Description</label>
+                    <textarea id="novelDesc" class="adm-textarea" placeholder="Novel ki mukhtasar kahani ya taruf..."></textarea>
+                </div>
+                <div class="adm-form-group">
+                    <label for="novelCover">Cover Image URL</label>
+                    <input type="url" id="novelCover" class="adm-input" placeholder="https://i.pinimg.com/...jpg">
+                </div>
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label for="novelLink">Reading Link (Blogspot / PDF)</label>
+                        <input type="text" id="novelLink" class="adm-input" placeholder="https://yournovel.blogspot.com/...">
+                    </div>
+                    <div class="adm-form-group">
+                        <label for="novelButtonText">Button Text</label>
+                        <input type="text" id="novelButtonText" class="adm-input" value="Read Online">
+                    </div>
+                </div>
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label>Availability</label>
+                        <select id="novelIsAvailable" class="adm-select">
+                            <option value="true">✅ Available to Read</option>
+                            <option value="false">⏳ Coming Soon</option>
+                        </select>
+                    </div>
+                    <div class="adm-form-group">
+                        <label>Multi-Episode Pop-up</label>
+                        <select id="novelHasLanguage" class="adm-select">
+                            <option value="true">Enabled (Shows Episodes Modal)</option>
+                            <option value="false">Disabled (Direct Link)</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="adm-btn-primary" style="margin-top: 14px;">Save Novel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dedicated Multi-Episode Manager Modal -->
+    <div class="adm-modal-backdrop" id="manageEpisodesModal">
+        <div class="adm-modal adm-modal-lg">
+            <div class="adm-modal-header">
+                <div>
+                    <h3 class="adm-modal-title" id="manageEpModalTitle">Manage Episodes</h3>
+                    <p style="font-size: 12.5px; color: var(--adm-text-muted); margin-top: 4px;">Add, edit, or remove episodes (Qist) for Urdu &amp; English editions.</p>
+                </div>
+                <button class="adm-modal-close" data-close="manageEpisodesModal">&times;</button>
+            </div>
+
+            <!-- Existing Episodes Table -->
+            <div style="margin-bottom: 24px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                    <h4 style="font-size: 15px; color: var(--adm-gold);">📖 Published Episodes</h4>
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" class="adm-btn-sm" id="epFilterUrduBtn" style="background: var(--adm-accent); color: #fff;">Urdu Edition</button>
+                        <button type="button" class="adm-btn-sm" id="epFilterEnglishBtn">English Edition</button>
+                    </div>
+                </div>
+
+                <div class="adm-table-wrap" style="max-height: 220px; overflow-y: auto;">
+                    <table class="adm-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Episode Title</th>
+                                <th>Release / Status</th>
+                                <th>Reading Link</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="episodesListTbody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Add / Edit Episode Form -->
+            <div style="padding: 18px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--adm-border); border-radius: 10px;">
+                <h4 style="font-size: 15px; margin-bottom: 14px;" id="epFormHeader">➕ Add New Episode</h4>
+                <form id="episodeForm">
+                    <input type="hidden" id="epNovelId">
+                    <input type="hidden" id="epEditingIndex" value="-1">
+
+                    <div class="adm-form-row">
+                        <div class="adm-form-group">
+                            <label for="epNumber">Episode Number *</label>
+                            <input type="number" id="epNumber" class="adm-input" value="1" min="1" required>
+                        </div>
+                        <div class="adm-form-group">
+                            <label for="epLanguage">Edition / Language *</label>
+                            <select id="epLanguage" class="adm-select">
+                                <option value="urdu">Urdu Edition (اردو ایڈیشن)</option>
+                                <option value="english">English Edition (انگلش ایڈیشن)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label for="epTitle">Episode Title (English) *</label>
+                        <input type="text" id="epTitle" class="adm-input" placeholder="e.g. Episode 3: The Unspoken Promise" required>
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label for="epNativeTitle">Episode Native Title (اردو عنوان)</label>
+                        <input type="text" id="epNativeTitle" class="adm-input" placeholder="مثلاً: قسط نمبر 3: ان کہی بات">
+                    </div>
+
+                    <div class="adm-form-row">
+                        <div class="adm-form-group">
+                            <label for="epReleaseDate">Release Date / Status Badge</label>
+                            <input type="text" id="epReleaseDate" class="adm-input" placeholder="Released • 15 Oct 2026">
+                        </div>
+                        <div class="adm-form-group">
+                            <label for="epLink">Reading Link (Blogspot / PDF URL) *</label>
+                            <input type="url" id="epLink" class="adm-input" placeholder="https://thelastletterds.blogspot.com/..." required>
+                        </div>
+                    </div>
+
+                    <div class="adm-form-group">
+                        <label for="epIsAvailable">Availability</label>
+                        <select id="epIsAvailable" class="adm-select">
+                            <option value="true">✅ Available to Read Now</option>
+                            <option value="false">⏳ Coming Soon</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-top: 14px;">
+                        <button type="submit" class="adm-btn-primary" style="flex: 1;" id="saveEpSubmitBtn">Save Episode</button>
+                        <button type="button" class="adm-btn-outline" id="cancelEpEditBtn" style="display: none;">Cancel Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Modal -->
+    <div class="adm-modal-backdrop" id="storyModal">
+        <div class="adm-modal">
+            <div class="adm-modal-header">
+                <h3 class="adm-modal-title" id="storyModalTitle">Add Short Story</h3>
+                <button class="adm-modal-close" data-close="storyModal">&times;</button>
+            </div>
+            <form id="storyForm">
+                <input type="hidden" id="storyId">
+                <div class="adm-form-group">
+                    <label for="storyTitle">Story Title *</label>
+                    <input type="text" id="storyTitle" class="adm-input" placeholder="e.g. Ishq E Lamakan" required>
+                </div>
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label for="storyTag">Tag</label>
+                        <input type="text" id="storyTag" class="adm-input" value="Short Story">
+                    </div>
+                    <div class="adm-form-group">
+                        <label for="storyStatus">Status</label>
+                        <select id="storyStatus" class="adm-select">
+                            <option value="false">⏳ Coming Soon</option>
+                            <option value="true">✅ Available to Read</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="adm-form-group">
+                    <label for="storyDesc">Description / Summary</label>
+                    <textarea id="storyDesc" class="adm-textarea" placeholder="Kahani ka taruf..."></textarea>
+                </div>
+                <div class="adm-form-group">
+                    <label for="storyCover">Cover Image URL</label>
+                    <input type="url" id="storyCover" class="adm-input" placeholder="https://i.pinimg.com/...jpg">
+                </div>
+                <div class="adm-form-group">
+                    <label for="storyLink">Reading Link (If available)</label>
+                    <input type="text" id="storyLink" class="adm-input" placeholder="https://... or #">
+                </div>
+                <button type="submit" class="adm-btn-primary" style="margin-top: 14px;">Save Short Story</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Audiobook Modal -->
+    <div class="adm-modal-backdrop" id="audioModal">
+        <div class="adm-modal">
+            <div class="adm-modal-header">
+                <h3 class="adm-modal-title" id="audioModalTitle">Add Audiobook</h3>
+                <button class="adm-modal-close" data-close="audioModal">&times;</button>
+            </div>
+            <form id="audioForm">
+                <input type="hidden" id="audioId">
+                <div class="adm-form-group">
+                    <label for="audioTitle">Audiobook Title *</label>
+                    <input type="text" id="audioTitle" class="adm-input" placeholder="e.g. Dastan-e-Ishq (Audio Drama)" required>
+                </div>
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label for="audioNarrator">Narrator Voice</label>
+                        <input type="text" id="audioNarrator" class="adm-input" value="Dastane Studio Voice Artists">
+                    </div>
+                    <div class="adm-form-group">
+                        <label for="audioDuration">Duration</label>
+                        <input type="text" id="audioDuration" class="adm-input" placeholder="e.g. 24:15 or Available Soon">
+                    </div>
+                </div>
+                <div class="adm-form-group">
+                    <label for="audioSrc">Audio File Link (MP3 URL)</label>
+                    <input type="url" id="audioSrc" class="adm-input" placeholder="https://yourserver.com/story.mp3">
+                </div>
+                <div class="adm-form-group">
+                    <label for="audioCover">Cover Image URL</label>
+                    <input type="url" id="audioCover" class="adm-input" placeholder="https://i.pinimg.com/...jpg">
+                </div>
+                <div class="adm-form-group">
+                    <label for="audioDesc">Audio Description</label>
+                    <textarea id="audioDesc" class="adm-textarea" placeholder="Audio production description..."></textarea>
+                </div>
+                <div class="adm-form-group">
+                    <label for="audioIsAvailable">Availability</label>
+                    <select id="audioIsAvailable" class="adm-select">
+                        <option value="false">⏳ Available Soon</option>
+                        <option value="true">✅ Ready to Play (Live Player)</option>
+                    </select>
+                </div>
+                <button type="submit" class="adm-btn-primary" style="margin-top: 14px;">Save Audiobook</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Announcement Modal -->
+    <div class="adm-modal-backdrop" id="newsModal">
+        <div class="adm-modal">
+            <div class="adm-modal-header">
+                <h3 class="adm-modal-title" id="newsModalTitle">Post Announcement</h3>
+                <button class="adm-modal-close" data-close="newsModal">&times;</button>
+            </div>
+            <form id="newsForm">
+                <input type="hidden" id="newsId">
+                <div class="adm-form-group">
+                    <label for="newsTitle">Announcement Title *</label>
+                    <input type="text" id="newsTitle" class="adm-input" placeholder="e.g. Episode 2 Release Update" required>
+                </div>
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label for="newsTag">Tag Name</label>
+                        <input type="text" id="newsTag" class="adm-input" value="Important Update • اہم اطلاع">
+                    </div>
+                    <div class="adm-form-group">
+                        <label for="newsTagType">Tag Badge Color Type</label>
+                        <select id="newsTagType" class="adm-select">
+                            <option value="urgent">🔴 Urgent (Red)</option>
+                            <option value="feature">🎙️ Feature / Studio (Gold)</option>
+                            <option value="update">✍️ Update (Blue)</option>
+                            <option value="release">🟢 Release (Green)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label for="newsDuration">Slider Duration (Seconds)</label>
+                        <input type="number" id="newsDuration" class="adm-input" value="8" min="3" max="30">
+                    </div>
+                    <div class="adm-form-group">
+                        <label for="newsHighlight">Highlight Badge Text</label>
+                        <input type="text" id="newsHighlight" class="adm-input" placeholder="e.g. 📅 New Date: 9 Sep 2026 • 8:00 PM">
+                    </div>
+                </div>
+                <div class="adm-form-group">
+                    <label for="newsUrdu">Urdu Message (اردو پیغام) *</label>
+                    <textarea id="newsUrdu" class="adm-textarea" placeholder="معزز قارئین کرام..." required></textarea>
+                </div>
+                <div class="adm-form-group">
+                    <label for="newsEnglish">English Message</label>
+                    <textarea id="newsEnglish" class="adm-textarea" placeholder="Dear Readers..."></textarea>
+                </div>
+                <div class="adm-form-row">
+                    <div class="adm-form-group">
+                        <label for="newsActionText">Action Button Text</label>
+                        <input type="text" id="newsActionText" class="adm-input" value="Read Online">
+                    </div>
+                    <div class="adm-form-group">
+                        <label for="newsActionLink">Action Link</label>
+                        <input type="text" id="newsActionLink" class="adm-input" value="#library">
+                    </div>
+                </div>
+                <div class="adm-form-group">
+                    <label for="newsCover">Cover Image URL</label>
+                    <input type="url" id="newsCover" class="adm-input" placeholder="https://i.pinimg.com/...jpg">
+                </div>
+                <button type="submit" class="adm-btn-primary" style="margin-top: 14px;">Post Announcement</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts (Ordered) -->
+    <!-- 1. Offline static fallback data -->
+    <script src="js/data/novels-list.js"></script>
+    <script src="js/data/stories-list.js"></script>
+    <script src="js/data/audiobooks-list.js"></script>
+    <script src="js/data/news/news-list.js"></script>
+    <!-- 2. Supabase Configuration & Client Engine -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-client.js"></script>
+    <!-- 3. Admin Panel Logic -->
+    <script src="js/admin.js"></script>
+</body>
+</html>

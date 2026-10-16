@@ -46,11 +46,31 @@
         }
     }
 
-    // Helper: Set active user session
+    // Helper: Secure SHA-256 password hashing via Web Crypto API
+    async function hashPassword(plainText) {
+        if (!plainText) return '';
+        try {
+            if (window.crypto && window.crypto.subtle) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(plainText);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+        } catch (e) {
+            console.warn('Crypto subtle unavailable:', e);
+        }
+        return btoa(unescape(encodeURIComponent(plainText)));
+    }
+
+    // Helper: Set active user session (Security: Never store passwords in session)
     function setCurrentUser(user) {
         if (user) {
             if (!Array.isArray(user.favorites)) user.favorites = [];
-            localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(user));
+            const safeUser = { ...user };
+            delete safeUser.password;
+            delete safeUser.passwordHash;
+            localStorage.setItem(STORAGE_KEYS.CURRENT_USER, JSON.stringify(safeUser));
         } else {
             localStorage.removeItem(STORAGE_KEYS.CURRENT_USER);
         }
@@ -538,7 +558,7 @@
         // 2. SIGN UP FORM SUBMISSION (Fast Username & Password with Unique Email & Username)
         const signupForm = document.getElementById('signupForm');
         if (signupForm) {
-            signupForm.addEventListener('submit', (e) => {
+            signupForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const name = document.getElementById('signupName').value.trim();
                 const username = document.getElementById('signupUsername').value.trim().toLowerCase().replace(/\s+/g, '_');
@@ -591,6 +611,9 @@
                     return;
                 }
 
+                // Security: Hash password with SHA-256
+                const hashedPassword = await hashPassword(password);
+
                 const newUser = {
                     id: 'usr_' + Date.now(),
                     name: name,
@@ -598,14 +621,14 @@
                     email: email || `${username}@dastane.local`,
                     avatar: '', // Default Name Initials
                     favorites: [], // User-bound favorites list
-                    password: password,
+                    passwordHash: hashedPassword,
                     joinedDate: new Date().toLocaleDateString()
                 };
 
                 users.push(newUser);
                 saveUsersDB(users);
 
-                // Set active session
+                // Set active session (password automatically stripped)
                 setCurrentUser(newUser);
                 signupForm.reset();
                 closeAuthModal();
@@ -620,7 +643,7 @@
         // 3. LOGIN FORM SUBMISSION (By Username or Email)
         const loginForm = document.getElementById('loginForm');
         if (loginForm) {
-            loginForm.addEventListener('submit', (e) => {
+            loginForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const identifier = document.getElementById('loginIdentifier').value.trim().toLowerCase();
                 const password = document.getElementById('loginPassword').value;
@@ -630,11 +653,12 @@
                     return;
                 }
 
+                const hashedPassword = await hashPassword(password);
                 const users = getUsersDB();
                 const user = users.find(u => 
                     ((u.username && u.username.toLowerCase() === identifier) || 
                      (u.email && u.email.toLowerCase() === identifier)) && 
-                    u.password === password
+                    (u.passwordHash === hashedPassword || u.password === password)
                 );
 
                 if (!user) {
@@ -644,7 +668,7 @@
 
                 if (!Array.isArray(user.favorites)) user.favorites = [];
 
-                // Set active session
+                // Set active session (password automatically stripped)
                 setCurrentUser(user);
                 loginForm.reset();
                 closeAuthModal();

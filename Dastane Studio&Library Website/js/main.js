@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     Our editorial team has received your registration. We will reach out to your email (<strong>${email}</strong>) and phone/WhatsApp (<strong>${phone}</strong>) with story updates, submission guidelines, and collaboration details.
                 </p>
                 <p style="font-size:12.5px; opacity:0.8; margin-top:8px;">
-                    📢 Remember: We are officially available exclusively through our Instagram (<strong>@dastanestudio</strong>) and Email (<strong>dastanestudios@gmail.com</strong>).
+                    📢 Remember: We are officially available through our Instagram (<strong>@dastanestudio</strong>), Facebook Page, and Email (<strong>dastanestudios@gmail.com</strong>).
                 </p>
             `;
 
@@ -281,6 +281,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 }).catch(err => console.warn('Google Sheet log warning:', err));
+
+                // 1b. Save to Supabase Cloud Database (for Admin Panel Subscribers table)
+                if (window.DastaneDB && typeof window.DastaneDB.saveSubscriber === 'function') {
+                    window.DastaneDB.saveSubscriber({
+                        firstName: firstName,
+                        surname: surname,
+                        email: email,
+                        phone: phone,
+                        plan: plan
+                    }).catch(err => console.warn('Supabase subscriber save:', err));
+                }
 
                 // 2. Direct Gmail Delivery via FormSubmit.co (Guaranteed direct to dastanestudios@gmail.com)
                 fetch('https://formsubmit.co/ajax/dastanestudios@gmail.com', {
@@ -335,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <strong>🎉 Thank you for connecting with Dastane Studio!</strong><br>
                         Your details for <strong>${plan}</strong> have been recorded successfully.<br>
                         <span style="display:inline-block; margin-top:6px; font-size:13.5px; opacity:0.95;">
-                            Our team will follow up via email (<strong>${email}</strong>) and phone/WhatsApp (<strong>${phone}</strong>). Follow our official Instagram <strong>@dastanestudio</strong> for upcoming stories!
+                            Our team will follow up via email (<strong>${email}</strong>) and phone/WhatsApp (<strong>${phone}</strong>). Follow our official Instagram <strong>@dastanestudio</strong> and Facebook Page for upcoming stories!
                         </span>
                     `;
                 }
